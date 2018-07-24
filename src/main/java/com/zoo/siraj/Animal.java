@@ -23,6 +23,7 @@ public abstract class Animal {
           this.maxFood.put(food,maxFood);
           this.existingFood.put(food,0);
           this.eatenFood.put(food,0);
+
      }
      public void removeFood(Food food){
           this.maxFood.remove(food);

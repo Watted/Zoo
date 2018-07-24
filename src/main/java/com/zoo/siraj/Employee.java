@@ -13,6 +13,7 @@ public class Employee {
     public Employee(String name) {
         this.id = String.valueOf(++idOfEmployee);
         this.name = name;
+
         this.treatmentAnimals = new ArrayList<>();
         System.out.println("sadsad");
     }

@@ -12,6 +12,7 @@ public class Cage {
     public Cage(int size) {
         this.id = String.valueOf(++idOfCage);
         this.size = size;
+
         this.contentAnimal = new ArrayList<>();
     }
 
