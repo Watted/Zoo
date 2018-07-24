@@ -14,6 +14,7 @@ public class Employee {
         this.id = String.valueOf(++idOfEmployee);
         this.name = name;
         this.treatmentAnimals = new ArrayList<>();
+        System.out.println("sadsad");
     }
 
     public String getName() {
