@@ -33,7 +33,7 @@ public abstract class Animal {
      public void updateFoodAmount(int amount ,Food food){
           Integer max = maxFood.get(food);
           Integer existing = existingFood.get(food);
-          if((max != null) && (existing !=null) &&( (existing + amount) <= max)) {
+          if((max != null) && (existing !=null) && ((existing + amount) <= max)) {
                existingFood.put(food,amount+existing);
           }
           else {
