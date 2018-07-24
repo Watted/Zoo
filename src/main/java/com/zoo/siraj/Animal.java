@@ -48,11 +48,16 @@ public abstract class Animal {
      public void setName(String name) {
           this.name = name;
      }
+
      public int getMaxFoodPerKind(Food food){
           if(maxFood.containsKey(food))
                return maxFood.get(food);
           else
                return 0;
+     }
+
+     public Map<Food, Integer> getExistingFood() {
+          return existingFood;
      }
 
      @Override

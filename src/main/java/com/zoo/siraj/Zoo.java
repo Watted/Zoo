@@ -7,35 +7,38 @@ import java.util.List;
 import java.util.Map;
 
 public class Zoo {
-  private List<Cage> cages;
-  private List<Employee> employees;
-  private Map<Food,Integer> foods;
+    private List<Cage> cages;
+    private List<Employee> employees;
+    private Map<Food, Integer> foods;
 
     public Zoo() {
         cages = new ArrayList<>();
         employees = new ArrayList<>();
         foods = new HashMap<>();
     }
-    public void addToTreatmentEmployee(Employee employee,Animal animal){
+
+    public void addToTreatmentEmployee(Employee employee, Animal animal) {
         employee.addAnimal(animal);
     }
-    public boolean removeFromTreatmentEmployee(Employee employee, Animal animal){
-       return employee.removeAnimal(animal);
+
+    public boolean removeFromTreatmentEmployee(Employee employee, Animal animal) {
+        return employee.removeAnimal(animal);
     }
-    public boolean feedAnimal(Employee employee, Animal animal , Food food,int amount){
-        if(amount <= animal.getMaxFoodPerKind(food)) {
+
+    public boolean feedAnimal(Employee employee, Animal animal, Food food, int amount) {
+        if (amount <= animal.getMaxFoodPerKind(food)) {
             animal.updateFoodAmount(amount, food);
             return employee.feedAnimals(animal, food, amount);
-        }
-        else
+        } else
             return false;
     }
 
-    public void addFood(Food food){
-        this.foods.put(food,0);
+    public void addFood(Food food) {
+        this.foods.put(food, 0);
     }
-    public Boolean removeFood(Food food){
-        if(this.foods.containsKey(food)){
+
+    public boolean removeFood(Food food) {
+        if (this.foods.containsKey(food)) {
             this.foods.remove(food);
             System.out.println("The food was removed successfully!");
             return true;
@@ -43,19 +46,25 @@ public class Zoo {
         System.out.println("The food was not removed!!!!");
         return false;
     }
-    public Boolean buyFood(Food food,int amountToBuy){
-        for(Cage cage:cages){
-            if(cage.getContentAnimal().isEmpty()) {
-               // cage.getContentAnimal().
+
+    public boolean buyFood(Food food, int amountToBuy) {
+        int sumOfAllMissingAmount = 0;
+        for (Cage cage : cages) {
+            for (Animal animal : cage.getContentAnimal()) {
+                if (animal.getExistingFood().containsKey(food)) {
+                    sumOfAllMissingAmount+= animal.getMaxFoodPerKind(food) - animal.getExistingFood().get(food);
+                }
             }
         }
-        if(this.foods.containsKey(food)){
-            int amountBeforeBuying=this.foods.get(food);
-            this.foods.put(food,amountToBuy+amountBeforeBuying);
+        if (amountToBuy <= sumOfAllMissingAmount) {
+            int amountBeforeBuying = this.foods.get(food);
+            this.foods.put(food, amountToBuy + amountBeforeBuying);
             System.out.println("The food was updated with the new amount!");
             return true;
         }
-        System.out.println("The food amount was not bought!!!!");
+        System.out.println("The food was not bought!!");
         return false;
     }
+
+
 }
