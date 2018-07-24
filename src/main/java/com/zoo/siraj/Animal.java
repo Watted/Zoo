@@ -31,9 +31,29 @@ public abstract class Animal {
           this.eatenFood.remove(food);
      }
      public void updateFoodAmount(int amount ,Food food){
-          System.out.println();
-
+          Integer max = maxFood.get(food);
+          Integer existing = existingFood.get(food);
+          if((max != null) && (existing !=null) &&( (existing + amount) <= max)) {
+               existingFood.put(food,amount+existing);
+          }
+          else {
+               throw  new RuntimeException("Something wrong while updating food");
+          }
      }
 
+     public String getName() {
+          return name;
+     }
 
+     public void setName(String name) {
+          this.name = name;
+     }
+
+     public int getCageSize() {
+          return cageSize;
+     }
+
+     public void setCageSize(int cageSize) {
+          this.cageSize = cageSize;
+     }
 }
