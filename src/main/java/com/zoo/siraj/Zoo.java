@@ -1,5 +1,6 @@
 package com.zoo.siraj;
 
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -16,13 +17,18 @@ public class Zoo {
         foods = new HashMap<>();
     }
     public void addToTreatmentEmployee(Employee employee,Animal animal){
-        
+        employee.addAnimal(animal);
     }
     public boolean removeFromTreatmentEmployee(Employee employee, Animal animal){
-
+       return employee.removeAnimal(animal);
     }
     public boolean feedAnimal(Employee employee, Animal animal , Food food,int amount){
-
+        if(amount <= animal.getMaxFoodPerKind(food)) {
+            animal.updateFoodAmount(amount, food);
+            return employee.feedAnimals(animal, food, amount);
+        }
+        else
+            return false;
     }
 
 }

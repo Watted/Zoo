@@ -48,6 +48,27 @@ public abstract class Animal {
      public void setName(String name) {
           this.name = name;
      }
+     public int getMaxFoodPerKind(Food food){
+          if(maxFood.containsKey(food))
+               return maxFood.get(food);
+          else
+               return 0;
+     }
+
+     @Override
+     public boolean equals(Object o) {
+          if (this == o) return true;
+          if (o == null || getClass() != o.getClass()) return false;
+
+          Animal animal = (Animal) o;
+
+          return id.equals(animal.id);
+     }
+
+     @Override
+     public int hashCode() {
+          return id.hashCode();
+     }
 
      public int getCageSize() {
           return cageSize;
