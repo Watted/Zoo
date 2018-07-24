@@ -30,6 +30,7 @@ public abstract class Animal {
           this.eatenFood.remove(food);
      }
      public void updateFoodAmount(int amount ,Food food){
+          System.out.println();
 
      }
 
