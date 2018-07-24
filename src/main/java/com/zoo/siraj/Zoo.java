@@ -17,23 +17,15 @@ public class Zoo {
         foods = new HashMap<>();
     }
 
-<<<<<<< HEAD
     public void addToTreatmentEmployee(Employee employee, Animal animal) {
-=======
-    public void addToTreatmentEmployee(Employee employee,Animal animal){
->>>>>>> a6d84b16f0ca7307e8dd964a9b0885dac3bbea7b
         employee.addAnimal(animal);
     }
 
     public boolean removeFromTreatmentEmployee(Employee employee, Animal animal) {
         return employee.removeAnimal(animal);
     }
-<<<<<<< HEAD
 
     public boolean feedAnimal(Employee employee, Animal animal, Food food, int amount) {
-=======
-    public boolean feedAnimal(Employee employee, Animal animal , Food food,int amount) {
->>>>>>> a6d84b16f0ca7307e8dd964a9b0885dac3bbea7b
         if (amount <= animal.getMaxFoodPerKind(food)) {
             animal.updateFoodAmount(amount, food);
             return employee.feedAnimals(animal, food, amount);
@@ -41,7 +33,6 @@ public class Zoo {
             return false;
     }
 
-<<<<<<< HEAD
     public void addFood(Food food) {
         this.foods.put(food, 0);
     }
@@ -61,7 +52,7 @@ public class Zoo {
         for (Cage cage : cages) {
             for (Animal animal : cage.getContentAnimal()) {
                 if (animal.getExistingFood().containsKey(food)) {
-                    sumOfAllMissingAmount+= animal.getMaxFoodPerKind(food) - animal.getExistingFood().get(food);
+                    sumOfAllMissingAmount += animal.getMaxFoodPerKind(food) - animal.getExistingFood().get(food);
                 }
             }
         }
@@ -76,7 +67,6 @@ public class Zoo {
     }
 
 
-=======
     public boolean removeAnimalFromCage(Animal animal, Cage cage) {
         return cage.removeAnimal(animal);
     }
@@ -88,6 +78,4 @@ public class Zoo {
     public boolean removeEmployee(Employee employee) {
         return employees.remove(employee);
     }
-
->>>>>>> a6d84b16f0ca7307e8dd964a9b0885dac3bbea7b
 }
