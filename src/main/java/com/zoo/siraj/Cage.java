@@ -1,9 +1,10 @@
 package com.zoo.siraj;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Cage {
+public class Cage implements Serializable {
     private static int idOfCage = 0;
     private String id;
     private int size;
@@ -12,7 +13,6 @@ public class Cage {
     public Cage(int size) {
         this.id = String.valueOf(++idOfCage);
         this.size = size;
-
         this.contentAnimal = new ArrayList<>();
     }
 

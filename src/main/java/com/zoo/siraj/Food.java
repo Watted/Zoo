@@ -1,6 +1,8 @@
 package com.zoo.siraj;
 
-public enum Food {
-    fruit,meat
+import java.io.Serializable;
+
+public enum Food implements Serializable {
+    plants,grains,seeds,insects, worms, fruits, meats
     
 }
