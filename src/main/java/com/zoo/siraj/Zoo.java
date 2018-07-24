@@ -16,6 +16,7 @@ public class Zoo {
         employees = new ArrayList<>();
         foods = new HashMap<>();
     }
+<<<<<<< HEAD
     public void addToTreatmentEmployee(Employee employee,Animal animal){
         employee.addAnimal(animal);
     }
@@ -29,6 +30,19 @@ public class Zoo {
         }
         else
             return false;
+=======
+
+    public boolean removeAnimalFromCage(Animal animal, Cage cage) {
+        return cage.removeAnimal(animal);
+    }
+
+    public void addEmployee(Employee employee) {
+        employees.add(employee);
+    }
+
+    public boolean removeEmployee(Employee employee) {
+        return employees.remove(employee);
+>>>>>>> abed
     }
 
 }
