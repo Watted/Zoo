@@ -1,7 +1,7 @@
 package com.zoo.siraj;
 
 
-import java.io.Serializable;
+import java.io.*;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -95,5 +95,18 @@ public class Zoo implements Serializable {
         else {
             return false;
         }
+    }
+
+    public static void saveToFile(Zoo zoo) throws IOException {
+        ObjectOutputStream stream = new ObjectOutputStream(new FileOutputStream("Zoo.ser"));
+        stream.writeObject(zoo);
+        stream.close();
+    }
+
+    public static Zoo loadFromFile() throws IOException, ClassNotFoundException {
+        ObjectInputStream stream = new ObjectInputStream(new FileInputStream("Zoo.ser"));
+        Zoo zoo =(Zoo) stream.readObject();
+        stream.close();
+        return zoo;
     }
 }
