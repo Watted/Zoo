@@ -39,4 +39,13 @@ public class Cage implements Serializable {
     public boolean removeAnimal(Animal animal){
         return this.contentAnimal.remove(animal);
     }
+
+    @Override
+    public String toString() {
+        return "\nCage{" +
+                "id='" + id + '\'' +
+                ", size=" + size +
+                ", contentAnimal=" + contentAnimal +
+                '}';
+    }
 }

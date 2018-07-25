@@ -49,4 +49,13 @@ public class Employee implements Serializable {
         }
         return false;
     }
+
+    @Override
+    public String toString() {
+        return "\nEmployee{" +
+                "id='" + id + '\'' +
+                ", name='" + name + '\'' +
+                ", treatmentAnimals=" + treatmentAnimals +
+                '}';
+    }
 }

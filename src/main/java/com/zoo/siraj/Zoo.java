@@ -103,10 +103,19 @@ public class Zoo implements Serializable {
         stream.close();
     }
 
-    public static Zoo loadFromFile() throws IOException, ClassNotFoundException {
+    public static Zoo loadFromFile() throws Exception {
         ObjectInputStream stream = new ObjectInputStream(new FileInputStream("Zoo.ser"));
         Zoo zoo =(Zoo) stream.readObject();
         stream.close();
         return zoo;
+    }
+
+    @Override
+    public String toString() {
+        return "Zoo{" +
+                "cages=" + cages +
+                ", employees=" + employees +
+                ", foods=" + foods +
+                '}';
     }
 }

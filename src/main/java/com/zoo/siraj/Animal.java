@@ -125,4 +125,16 @@ public abstract class Animal implements Serializable {
      public void setCageSize(int cageSize) {
           this.cageSize = cageSize;
      }
+
+     @Override
+     public String toString() {
+          return "\nAnimal{" +
+                  "name='" + name + '\'' +
+                  ", id='" + id + '\'' +
+                  ", cageSize=" + cageSize +
+                  ", maxFood=" + maxFood +
+                  ", existingFood=" + existingFood +
+                  ", eatenFood=" + eatenFood +
+                  '}';
+     }
 }
