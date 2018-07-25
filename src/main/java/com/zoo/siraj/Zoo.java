@@ -58,21 +58,26 @@ public class Zoo implements Serializable {
         int sumOfAllMissingAmount = 0;
         for (Cage cage : cages) {
             for (Animal animal : cage.getContentAnimal()) {
-                if (animal.getExistingFood().containsKey(food)) {
-                    sumOfAllMissingAmount += animal.getMaxFoodPerKind(food) - animal.getExistingFood().get(food);
+                if (animal.getMaxFood().containsKey(food)
+                        && animal.getExistingFood().containsKey(food)
+                        && animal.getEatenFood().containsKey(food)) {
+
+                    int allowedFoodAmountToEatForAnimalPerDay = animal.getMaxFoodPerKind(food)
+                            - animal.getExistingFoodPerKind(food)
+                            - animal.getEatenFoodPerKind(food);
+
+                    sumOfAllMissingAmount += allowedFoodAmountToEatForAnimalPerDay;
                 }
             }
         }
-        if (amountToBuy <= sumOfAllMissingAmount) {
-            int amountBeforeBuying = this.foods.get(food);
-            this.foods.put(food, amountToBuy + amountBeforeBuying);
-            System.out.println("The food was updated with the new amount!");
+
+        int existingAmount = this.foods.get(food);
+        if (amountToBuy <= sumOfAllMissingAmount - existingAmount) {
+            this.foods.put(food, amountToBuy + existingAmount);
             return true;
         }
-        System.out.println("The food was not bought!!");
         return false;
     }
-
 
     public void addToTreatmentEmployee(Employee employee, Animal animal) {
         employee.addAnimal(animal);

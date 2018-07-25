@@ -95,6 +95,14 @@ public abstract class Animal implements Serializable {
           return existingFood;
      }
 
+     public Map<Food, Integer> getMaxFood() {
+          return maxFood;
+     }
+
+     public Map<Food, Integer> getEatenFood() {
+          return eatenFood;
+     }
+
      @Override
      public boolean equals(Object o) {
           if (this == o) return true;
