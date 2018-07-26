@@ -1,13 +1,10 @@
 package UX;
 
-import javafx.animation.FadeTransition;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Label;
 import javafx.stage.Stage;
-import javafx.util.Duration;
 
 import java.awt.*;
 
