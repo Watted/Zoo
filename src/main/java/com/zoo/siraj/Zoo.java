@@ -1,4 +1,4 @@
-package com.zoo.siraj;
+package main.java.com.zoo.siraj;
 
 
 import java.io.*;

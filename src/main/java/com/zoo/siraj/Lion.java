@@ -1,4 +1,4 @@
-package com.zoo.siraj;
+package main.java.com.zoo.siraj;
 
 public class Lion extends Animal {
     public Lion(String name, int cageSize) {
