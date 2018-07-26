@@ -33,4 +33,9 @@ public class Snake extends Animal {
         });
         timer.start();
     }
+
+    @Override
+    public String getName() {
+        return "Snake";
+    }
 }

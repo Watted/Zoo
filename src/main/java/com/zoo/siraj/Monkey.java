@@ -34,4 +34,9 @@ public class Monkey extends Animal {
         });
         timer.start();
     }
+
+    @Override
+    public String getName() {
+        return "Monkey";
+    }
 }

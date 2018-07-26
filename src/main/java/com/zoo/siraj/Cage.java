@@ -48,4 +48,12 @@ public class Cage implements Serializable {
                 ", contentAnimal=" + contentAnimal +
                 '}';
     }
+
+    public String getId() {
+        return this.id;
+    }
+
+    public boolean contentThisAnimal(Animal animalById) {
+        return this.contentAnimal.contains(animalById);
+    }
 }

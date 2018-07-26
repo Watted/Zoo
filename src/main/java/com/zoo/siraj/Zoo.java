@@ -5,36 +5,40 @@ import java.io.*;
 import java.util.*;
 
 public class Zoo implements Serializable {
-    private List<Cage> cages;
+    private Map<String,Cage> cages;
     private List<Employee> employees;
     private Map<Food, Integer> foods;
+    private Map<String,Animal> animals;
 
     public Zoo() {
-        cages = new ArrayList<>();
+        cages = new HashMap<>();
         employees = new ArrayList<>();
         foods = new HashMap<>();
+        animals = new HashMap<>();
     }
 
     public void addCage(Cage cage) {
-        cages.add(cage);
+        cages.put(cage.getId(),cage);
     }
 
     public List<Integer> getCages(){
         List<Integer> listOfInteger = new ArrayList<>();
-        Iterator<Cage> iterator = this.cages.iterator();
+        Set<Map.Entry<String, Cage>> entries = this.cages.entrySet();
+        Iterator<Map.Entry<String, Cage>> iterator = entries.iterator();
         while (iterator.hasNext()){
-            Cage next = iterator.next();
-            listOfInteger.add(next.getSize());
+            Map.Entry<String, Cage> next = iterator.next();
+            listOfInteger.add(next.getValue().getSize());
         }
         return listOfInteger;
     }
 
     public List<String> getAnimals(String animal){
         List<String> listOfAnimal = new ArrayList<>();
-        Iterator<Cage> iterator = this.cages.iterator();
+        Set<Map.Entry<String, Cage>> entries = this.cages.entrySet();
+        Iterator<Map.Entry<String, Cage>> iterator = entries.iterator();
         while (iterator.hasNext()){
-            Cage next = iterator.next();
-            Iterator<Animal> animalIterator = next.getContentAnimal().iterator();
+            Map.Entry<String, Cage> next = iterator.next();
+            Iterator<Animal> animalIterator = next.getValue().getContentAnimal().iterator();
             while (animalIterator.hasNext()){
                 Animal animal1 = animalIterator.next();
                 if (animal.equals("Lion") && animal1 instanceof Lion){
@@ -50,16 +54,38 @@ public class Zoo implements Serializable {
         return listOfAnimal;
     }
 
-    public boolean removeCage(Cage cage) {
-        return cages.remove(cage);
+    public void removeCage(String id) {
+        Cage remove = cages.remove(id);
+        List<Animal> contentAnimal = remove.getContentAnimal();
+        Iterator<Animal> iterator = contentAnimal.iterator();
+        while (iterator.hasNext()){
+            Animal next = iterator.next();
+            this.animals.remove(next);
+        }
+
     }
+
 
     public void addAnimalToCage(Animal animal, Cage cage) {
         cage.addAnimal(animal);
+        this.animals.put(animal.getId(),animal);
     }
 
-    public boolean removeAnimalFromCage(Animal animal, Cage cage) {
-        return cage.removeAnimal(animal);
+
+
+    public void removeAnimalById(String id){
+        Animal animal = this.animals.remove(id);
+        Set<Map.Entry<String, Cage>> entries = this.cages.entrySet();
+        Iterator<Map.Entry<String, Cage>> iterator = entries.iterator();
+        while (iterator.hasNext()){
+            Map.Entry<String, Cage> next = iterator.next();
+            Cage value = next.getValue();
+            value.removeAnimal(animal);
+        }
+    }
+
+    public Animal getAnimalById(String id){
+        return this.animals.get(id);
     }
 
     public void addEmployee(Employee employee) {
@@ -82,7 +108,7 @@ public class Zoo implements Serializable {
         return false;
     }
 
-    public boolean buyFood(Food food, int amountToBuy) {
+    /*public boolean buyFood(Food food, int amountToBuy) {
         int sumOfAllMissingAmount = 0;
         for (Cage cage : cages) {
             for (Animal animal : cage.getContentAnimal()) {
@@ -105,7 +131,7 @@ public class Zoo implements Serializable {
             return true;
         }
         return false;
-    }
+    }*/
 
     public void addToTreatmentEmployee(Employee employee, Animal animal) {
         employee.addAnimal(animal);
@@ -147,5 +173,32 @@ public class Zoo implements Serializable {
                 ", employees=" + employees +
                 ", foods=" + foods +
                 '}';
+    }
+
+    public Cage getCageToThisAnimal(Animal animalById) {
+        Set<Map.Entry<String, Cage>> entries = this.cages.entrySet();
+        Iterator<Map.Entry<String, Cage>> iterator = entries.iterator();
+        while (iterator.hasNext()){
+            Map.Entry<String, Cage> next = iterator.next();
+            Cage value = next.getValue();
+            if (value.contentThisAnimal(animalById)){
+                return value;
+            }
+        }
+        return null;
+    }
+
+
+    public Cage getCageWithThisSize(int selectedItem) {
+        Set<Map.Entry<String, Cage>> entries = this.cages.entrySet();
+        Iterator<Map.Entry<String, Cage>> iterator = entries.iterator();
+        while (iterator.hasNext()){
+            Map.Entry<String, Cage> next = iterator.next();
+            Cage value = next.getValue();
+            if (selectedItem==value.getSize()){
+                return value;
+            }
+        }
+        return null;
     }
 }

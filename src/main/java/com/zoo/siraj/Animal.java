@@ -131,4 +131,6 @@ public abstract class Animal implements Serializable {
     public String getId() {
           return this.id;
     }
+
+     public abstract String getName();
 }
