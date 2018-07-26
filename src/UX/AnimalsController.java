@@ -2,6 +2,7 @@ package UX;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
@@ -12,13 +13,13 @@ public class AnimalsController {
     @FXML
     private Button addAnimal;
     @FXML
-    private TextField addName;
+    private ComboBox animalType;
     @FXML
     private TextField addCage;
     @FXML
     private TextField addCzxageSize;
     @FXML
-    private TextField addFoodTyepe;
+    private ComboBox foodType;
     @FXML
     private TextField addMaxFoodAmount;
     @FXML
@@ -27,20 +28,20 @@ public class AnimalsController {
     private Button cancelAdding;
     @FXML
     private void initialize() {
-        addName.setVisible(false);
+        animalType.setVisible(false);
         addCage.setVisible(false);
         addCzxageSize.setVisible(false);
-        addFoodTyepe.setVisible(false);
+        foodType.setVisible(false);
         addMaxFoodAmount.setVisible(false);
         add.setVisible(false);
         cancelAdding.setVisible(false);
 
         close.setOnAction(close->((Stage) ((Button) close.getSource()).getScene().getWindow()).close());
         addAnimal.setOnAction(addAnimals->{
-            addName.setVisible(true);
+            animalType.setVisible(true);
             addCage.setVisible(true);
             addCzxageSize.setVisible(true);
-            addFoodTyepe.setVisible(true);
+            foodType.setVisible(true);
             addMaxFoodAmount.setVisible(true);
             add.setVisible(true);
             cancelAdding.setVisible(true);
@@ -48,10 +49,10 @@ public class AnimalsController {
 
         });
         cancelAdding.setOnAction(cancel->{
-            addName.setVisible(false);
+            animalType.setVisible(false);
             addCage.setVisible(false);
             addCzxageSize.setVisible(false);
-            addFoodTyepe.setVisible(false);
+            foodType.setVisible(false);
             addMaxFoodAmount.setVisible(false);
             add.setVisible(false);
             cancelAdding.setVisible(false);
