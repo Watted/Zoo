@@ -5,10 +5,8 @@ import java.util.HashMap;
 import java.util.Map;
 
 public abstract class Animal implements Serializable {
-     abstract public void eat();
 
      private static int counter=1;
-     private String name;
      private String id;
      private int cageSize;
 
@@ -21,11 +19,12 @@ public abstract class Animal implements Serializable {
      // remember this values are reset every dat, so this is the food that eat beer day
      private Map<Food,Integer> eatenFood = new HashMap<>();
 
-     public Animal(String name, int cageSize) {
-          this.name = name;
+     public Animal(int cageSize) {
           this.cageSize = cageSize;
           this.id = String.valueOf(counter++);
      }
+
+     abstract public void eat();
 
      public void addFood(Food food, int maxFood) {
           this.maxFood.put(food,maxFood);
@@ -62,14 +61,6 @@ public abstract class Animal implements Serializable {
           for (Map.Entry<Food, Integer> entry : eatenFood.entrySet()) {
                entry.setValue(0);
           }
-     }
-
-     public String getName() {
-          return name;
-     }
-
-     public void setName(String name) {
-          this.name = name;
      }
 
      public int getMaxFoodPerKind(Food food){
@@ -129,7 +120,6 @@ public abstract class Animal implements Serializable {
      @Override
      public String toString() {
           return "\nAnimal{" +
-                  "name='" + name + '\'' +
                   ", id='" + id + '\'' +
                   ", cageSize=" + cageSize +
                   ", maxFood=" + maxFood +
