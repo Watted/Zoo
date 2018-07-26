@@ -127,4 +127,8 @@ public abstract class Animal implements Serializable {
                   ", eatenFood=" + eatenFood +
                   '}';
      }
+
+    public String getId() {
+          return this.id;
+    }
 }

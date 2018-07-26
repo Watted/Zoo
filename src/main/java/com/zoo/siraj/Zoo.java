@@ -29,6 +29,27 @@ public class Zoo implements Serializable {
         return listOfInteger;
     }
 
+    public List<String> getAnimals(String animal){
+        List<String> listOfAnimal = new ArrayList<>();
+        Iterator<Cage> iterator = this.cages.iterator();
+        while (iterator.hasNext()){
+            Cage next = iterator.next();
+            Iterator<Animal> animalIterator = next.getContentAnimal().iterator();
+            while (animalIterator.hasNext()){
+                Animal animal1 = animalIterator.next();
+                if (animal.equals("Lion") && animal1 instanceof Lion){
+                    listOfAnimal.add(animal1.getId());
+                }else if (animal.equals("Monkey") && animal1 instanceof Monkey){
+                    listOfAnimal.add(animal1.getId());
+                }else if (animal.equals("Snake") && animal1 instanceof Snake){
+                    listOfAnimal.add(animal1.getId());
+                }
+
+            }
+        }
+        return listOfAnimal;
+    }
+
     public boolean removeCage(Cage cage) {
         return cages.remove(cage);
     }
