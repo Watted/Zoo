@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.GridPane?>
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="778.0" prefWidth="1280.0" fx:controller="UX.Controller" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <Pane fx:id="controlPannel" layoutX="250.0" layoutY="659.0" prefHeight="105.0" prefWidth="752.0">
+         <children>
+            <Button fx:id="animals" layoutY="18.0" mnemonicParsing="false" prefHeight="70.0" prefWidth="150.0" text="Animals" />
+            <Button fx:id="employe" layoutX="200.0" layoutY="18.0" mnemonicParsing="false" prefHeight="70.0" prefWidth="150.0" text="Employees" />
+            <Button fx:id="cages" layoutX="400.0" layoutY="18.0" mnemonicParsing="false" prefHeight="70.0" prefWidth="150.0" text="Cages" />
+            <Button fx:id="close" layoutX="600.0" layoutY="18.0" mnemonicParsing="false" prefHeight="70.0" prefWidth="150.0" text="Close" />
+         </children>
+      </Pane>
+      <Label fx:id="welcomeLabel" contentDisplay="CENTER" layoutX="150" layoutY="263.0" style="-fx-background-color: #E0E0E0;" text="Welcome To The Zoo !" textAlignment="CENTER" textFill="#22d31c" wrapText="true">
+         <font>
+            <Font name="Kristen ITC" size="80.0" />
+         </font>
+         <opaqueInsets>
+            <Insets />
+         </opaqueInsets>
+      </Label>
+   </children>
+</Pane>
