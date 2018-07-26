@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="UX.EmployeeController">
+   <children>
+      <Pane layoutX="179.0" prefHeight="400.0" prefWidth="500.0">
+         <children>
+            <Label fx:id="empNameL" layoutX="14.0" layoutY="14.0" prefHeight="30.0" prefWidth="480.0" text="Employee Name :" />
+            <Label fx:id="empIdL" layoutX="14.0" layoutY="45.0" prefHeight="30.0" prefWidth="480.0" text="ID :" />
+            <Label fx:id="animalsL" layoutX="14.0" layoutY="76.0" prefHeight="30.0" prefWidth="480.0" text="Animals :" />
+            <Button fx:id="removeEmp" layoutX="14.0" layoutY="355.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="150.0" text="Remove Employee" />
+            <TextField fx:id="addName" layoutX="206.0" layoutY="14.0" />
+            <TextField fx:id="addAnimals" layoutX="206.0" layoutY="76.0" />
+            <Button fx:id="cancel" layoutX="14.0" layoutY="355.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="150.0" text="Cancel Adding" />
+            <Button fx:id="add" layoutX="336.0" layoutY="355.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="150.0" text="Add..." />
+         </children>
+      </Pane>
+      <Pane prefHeight="132.0" prefWidth="181.0">
+         <children>
+            <Button fx:id="addEmployee" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="127.0" text="Add Employee" />
+            <Button fx:id="close" layoutX="10.0" layoutY="51.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="127.0" text="Close" />
+         </children>
+      </Pane>
+      <Pane layoutY="132.0" prefHeight="267.0" prefWidth="181.0">
+         <children>
+            <Label layoutX="42.0" layoutY="14.0" prefHeight="21.0" prefWidth="98.0" text="Employee List" />
+            <ListView layoutY="44.0" prefHeight="214.0" prefWidth="181.0" />
+         </children>
+      </Pane>
+   </children>
+</AnchorPane>

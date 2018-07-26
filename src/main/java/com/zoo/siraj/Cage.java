@@ -1,9 +1,10 @@
-package com.zoo.siraj;
+package main.java.com.zoo.siraj;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Cage {
+public class Cage implements Serializable {
     private static int idOfCage = 0;
     private String id;
     private int size;
@@ -12,7 +13,6 @@ public class Cage {
     public Cage(int size) {
         this.id = String.valueOf(++idOfCage);
         this.size = size;
-
         this.contentAnimal = new ArrayList<>();
     }
 
@@ -38,5 +38,14 @@ public class Cage {
 
     public boolean removeAnimal(Animal animal){
         return this.contentAnimal.remove(animal);
+    }
+
+    @Override
+    public String toString() {
+        return "\nCage{" +
+                "id='" + id + '\'' +
+                ", size=" + size +
+                ", contentAnimal=" + contentAnimal +
+                '}';
     }
 }

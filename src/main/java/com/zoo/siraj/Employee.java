@@ -1,10 +1,10 @@
-package com.zoo.siraj;
+package main.java.com.zoo.siraj;
 
+import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 
-public class Employee {
+public class Employee implements Serializable {
     private static int idOfEmployee = 0;
     private String id;
     private String name;
@@ -13,9 +13,7 @@ public class Employee {
     public Employee(String name) {
         this.id = String.valueOf(++idOfEmployee);
         this.name = name;
-
         this.treatmentAnimals = new ArrayList<>();
-        System.out.println("sadsad");
     }
 
     public String getName() {
@@ -43,12 +41,21 @@ public class Employee {
     }
 
     public boolean feedAnimals(Animal animal ,Food food, int amount){
-        int index = this.treatmentAnimals.indexOf(animal);
-        if (index !=-1) {
-            Animal animal1 = this.treatmentAnimals.get(index);
-            animal1.updateFoodAmount(amount, food);
+        if (treatmentAnimals.contains(animal)) {
+            int index = this.treatmentAnimals.indexOf(animal);
+            Animal animalToFeed = this.treatmentAnimals.get(index);
+            animalToFeed.addFoodToAnimal(amount, food);
             return true;
         }
         return false;
+    }
+
+    @Override
+    public String toString() {
+        return "\nEmployee{" +
+                "id='" + id + '\'' +
+                ", name='" + name + '\'' +
+                ", treatmentAnimals=" + treatmentAnimals +
+                '}';
     }
 }

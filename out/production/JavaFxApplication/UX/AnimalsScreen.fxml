@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+
+<AnchorPane fx:id="animalAnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="UX.AnimalsController">
+   <children>
+      <Pane layoutX="179.0" prefHeight="400.0" prefWidth="500.0">
+         <children>
+            <Button fx:id="feedAnimal" layoutX="366.0" layoutY="355.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="120.0" text="Feed Animal" />
+            <Label fx:id="animalNameL" layoutX="14.0" layoutY="14.0" prefHeight="30.0" prefWidth="480.0" text="Animal Name :" />
+            <Label fx:id="animalIdL" layoutX="14.0" layoutY="51.0" prefHeight="30.0" prefWidth="480.0" text="ID :" />
+            <Label fx:id="cageIdL" layoutX="14.0" layoutY="88.0" prefHeight="30.0" prefWidth="480.0" text="Cage :" />
+            <Label fx:id="cagesizeL" layoutX="14.0" layoutY="125.0" prefHeight="30.0" prefWidth="480.0" text="Cage Size :" />
+            <Button fx:id="romverAnimal" layoutX="14.0" layoutY="355.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="130.0" text="Remove Animal" />
+            <Label fx:id="foodTypeL" layoutX="14.0" layoutY="162.0" prefHeight="30.0" prefWidth="480.0" text="Food Type :" />
+            <Label fx:id="maxFdAmountL" layoutX="14.0" layoutY="198.0" prefHeight="30.0" prefWidth="480.0" text="Max Food Amount :" />
+            <TextField fx:id="addName" layoutX="228.0" layoutY="14.0" />
+            <TextField fx:id="addCage" layoutX="228.0" layoutY="88.0" />
+            <TextField fx:id="addCzxageSize" layoutX="228.0" layoutY="125.0" />
+            <TextField fx:id="addFoodTyepe" layoutX="228.0" layoutY="162.0" />
+            <TextField fx:id="addMaxFoodAmount" layoutX="228.0" layoutY="198.0" />
+            <Button fx:id="add" layoutX="366.0" layoutY="355.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="120.0" text="Add..." />
+            <Button fx:id="cancelAdding" layoutX="14.0" layoutY="355.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="130.0" text="Cancel Adding" />
+         </children>
+      </Pane>
+      <Pane prefHeight="132.0" prefWidth="181.0">
+         <children>
+            <Button fx:id="addAnimal" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="127.0" text="Add Animal" />
+            <Button fx:id="close" layoutX="10.0" layoutY="51.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="127.0" text="Close" />
+         </children>
+      </Pane>
+      <Pane layoutY="132.0" prefHeight="267.0" prefWidth="181.0">
+         <children>
+            <Label layoutX="51.0" layoutY="14.0" text="Animals List" />
+            <TreeView layoutX="2.0" layoutY="45.0" prefHeight="217.0" prefWidth="170.0" />
+         </children>
+      </Pane>
+   </children>
+</AnchorPane>
