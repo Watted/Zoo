@@ -2,10 +2,7 @@ package main.java.com.zoo.siraj;
 
 
 import java.io.*;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 public class Zoo implements Serializable {
     private List<Cage> cages;
@@ -20,6 +17,16 @@ public class Zoo implements Serializable {
 
     public void addCage(Cage cage) {
         cages.add(cage);
+    }
+
+    public List<Integer> getCages(){
+        List<Integer> listOfInteger = new ArrayList<>();
+        Iterator<Cage> iterator = this.cages.iterator();
+        while (iterator.hasNext()){
+            Cage next = iterator.next();
+            listOfInteger.add(next.getSize());
+        }
+        return listOfInteger;
     }
 
     public boolean removeCage(Cage cage) {
@@ -119,33 +126,5 @@ public class Zoo implements Serializable {
                 ", employees=" + employees +
                 ", foods=" + foods +
                 '}';
-    }
-
-    public static void main(String []args){
-        Zoo zoo = new Zoo();
-        Employee employee = new Employee("watted");
-        Cage cage = new Cage(3);
-        Monkey monkey = new Monkey(2);
-        Snake snake = new Snake(2);
-        snake.addFood(Food.meats,5);
-        monkey.addFood(Food.fruits,8);
-        zoo.addCage(cage);
-        zoo.addEmployee(employee);
-        zoo.addAnimalToCage(monkey,cage);
-        zoo.addAnimalToCage(snake,cage);
-        zoo.addFood(Food.fruits);
-        zoo.addFood(Food.meats);
-        zoo.buyFood(Food.fruits,10);
-        zoo.buyFood(Food.meats,10);
-        zoo.addToTreatmentEmployee(employee,monkey);
-        zoo.addToTreatmentEmployee(employee,snake);
-        zoo.feedAnimal(employee,monkey,Food.fruits,8);
-        zoo.feedAnimal(employee,snake,Food.meats,4);
-
-        while (true)
-        {
-
-        }
-
     }
 }

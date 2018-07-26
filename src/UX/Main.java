@@ -5,10 +5,13 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import main.java.com.zoo.siraj.Zoo;
 
 import java.awt.*;
 
 public class Main extends Application {
+
+    protected static Zoo zoo = new Zoo();
 
     @Override
     public void start(Stage primaryStage) throws Exception{
