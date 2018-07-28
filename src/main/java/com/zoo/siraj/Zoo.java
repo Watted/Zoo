@@ -6,13 +6,13 @@ import java.util.*;
 
 public class Zoo implements Serializable {
     private Map<String,Cage> cages;
-    private List<Employee> employees;
+    private Map<String,Employee> employees;
     private Map<Food, Integer> foods;
     private Map<String,Animal> animals;
 
     public Zoo() {
         cages = new HashMap<>();
-        employees = new ArrayList<>();
+        employees = new HashMap<>();
         foods = new HashMap<>();
         animals = new HashMap<>();
     }
@@ -28,6 +28,16 @@ public class Zoo implements Serializable {
         while (iterator.hasNext()){
             Map.Entry<String, Cage> next = iterator.next();
             listOfInteger.add(next.getValue().getSize());
+        }
+        return listOfInteger;
+    }
+    public List<String> getEmployees(){
+        List<String> listOfInteger = new ArrayList<>();
+        Set<Map.Entry<String, Employee>> entries = this.employees.entrySet();
+        Iterator<Map.Entry<String, Employee>> iterator = entries.iterator();
+        while (iterator.hasNext()){
+            Map.Entry<String, Employee> next = iterator.next();
+            listOfInteger.add(next.getValue().getId());
         }
         return listOfInteger;
     }
@@ -89,11 +99,11 @@ public class Zoo implements Serializable {
     }
 
     public void addEmployee(Employee employee) {
-        employees.add(employee);
+        employees.put(employee.getId(),employee);
     }
 
-    public boolean removeEmployee(Employee employee) {
-        return employees.remove(employee);
+    public Employee removeEmployee(Employee employee) {
+        return employees.remove(employee.getId());
     }
 
     public void addFood(Food food) {
@@ -200,5 +210,23 @@ public class Zoo implements Serializable {
             }
         }
         return null;
+    }
+
+    public Employee getEmployeeToThisAnimal(Animal animalById) {
+        Set<Map.Entry<String, Employee>> entries = this.employees.entrySet();
+        Iterator<Map.Entry<String, Employee>> iterator = entries.iterator();
+        while (iterator.hasNext()){
+            Map.Entry<String, Employee> next = iterator.next();
+            Employee value = next.getValue();
+            if (value.contentThisAnimal(animalById)){
+                return value;
+            }
+        }
+        return null;
+    }
+
+
+    public Employee getEmployeeWithThisId(String id) {
+        return this.employees.get(id);
     }
 }

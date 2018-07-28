@@ -7,6 +7,7 @@ import java.util.Map;
 import java.util.Set;
 
 public class Monkey extends Animal {
+    private Timer timer;
     public Monkey(int cageSize) {
         super(cageSize);
     }
@@ -14,7 +15,7 @@ public class Monkey extends Animal {
     @Override
     public void eat() {
         System.out.println("monkey");
-        Timer timer = new Timer(1000, action ->{
+        this.timer = new Timer(1000, action ->{
             boolean flag = false;
             Map<Food, Integer> existingFood = this.getExistingFood();
             Set<Map.Entry<Food, Integer>> entries = existingFood.entrySet();
@@ -28,11 +29,17 @@ public class Monkey extends Animal {
                     value -= 1;
                     next.setValue(value);
                     flag = true;
+                }else {
+                    stop();
                 }
             }
             System.out.println("eaten " + flag);
         });
         timer.start();
+    }
+
+    private void stop() {
+        this.timer.stop();
     }
 
     @Override

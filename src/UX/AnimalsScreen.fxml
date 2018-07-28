@@ -14,18 +14,20 @@
             <Button fx:id="feedAnimal" layoutX="366.0" layoutY="355.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="120.0" text="Feed Animal" />
             <Label fx:id="lablAnimalType" layoutX="14.0" layoutY="14.0" prefHeight="30.0" prefWidth="480.0" text="Animal Type :" />
             <Label fx:id="lablId" layoutX="14.0" layoutY="51.0" prefHeight="30.0" prefWidth="480.0" text="ID :" />
-            <Label fx:id="lablCage" layoutX="14.0" layoutY="88.0" prefHeight="30.0" prefWidth="480.0" text="Cage :" />
+            <Label fx:id="lablCage" layoutX="14.0" layoutY="88.0" prefHeight="30.0" prefWidth="480.0" text="Cage Size:" />
             <Label fx:id="lablSize" layoutX="14.0" layoutY="125.0" prefHeight="30.0" prefWidth="480.0" text="Animal Size :" />
             <Button fx:id="romverAnimal" layoutX="14.0" layoutY="355.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="130.0" text="Remove Animal" />
-            <Label fx:id="lablFoodType" layoutX="14.0" layoutY="162.0" prefHeight="30.0" prefWidth="480.0" text="Food Type :" />
-            <Label fx:id="lablMax" layoutX="14.0" layoutY="198.0" prefHeight="30.0" prefWidth="480.0" text="Max Food Amount :" />
+            <Label fx:id="lablFoodType" layoutX="14.0" layoutY="208.0" prefHeight="30.0" prefWidth="480.0" text="Food Type :" />
+            <Label fx:id="lablMax" layoutX="14.0" layoutY="244.0" prefHeight="30.0" prefWidth="480.0" text="Max Food Amount :" />
             <Button fx:id="add" layoutX="366.0" layoutY="355.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="120.0" text="Add..." />
             <Button fx:id="cancelAdding" layoutX="14.0" layoutY="355.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="130.0" text="Cancel Adding" />
-            <ComboBox fx:id="foodType" layoutX="228.0" layoutY="162.0" prefHeight="31.0" prefWidth="186.0" />
+            <ComboBox fx:id="foodType" layoutX="228.0" layoutY="208.0" prefHeight="31.0" prefWidth="186.0" />
             <ComboBox fx:id="animalType" layoutX="228.0" layoutY="14.0" prefHeight="31.0" prefWidth="186.0" />
-            <ComboBox fx:id="maxFoodAmount" layoutX="228.0" layoutY="198.0" prefHeight="31.0" prefWidth="186.0" />
+            <ComboBox fx:id="maxFoodAmount" layoutX="228.0" layoutY="244.0" prefHeight="31.0" prefWidth="186.0" />
             <ComboBox fx:id="addCage" layoutX="228.0" layoutY="88.0" prefHeight="31.0" prefWidth="186.0" />
             <ComboBox fx:id="addAnimalSize" layoutX="228.0" layoutY="125.0" prefHeight="31.0" prefWidth="186.0" />
+            <Label fx:id="lablEmployee" layoutX="14.0" layoutY="170.0" prefHeight="30.0" prefWidth="480.0" text="Employee Id:" />
+            <ComboBox fx:id="addEmployee" layoutX="228.0" layoutY="169.0" prefHeight="31.0" prefWidth="186.0" />
          </children>
       </Pane>
       <Pane prefHeight="132.0" prefWidth="181.0">

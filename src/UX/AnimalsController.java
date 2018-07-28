@@ -15,6 +15,7 @@ import javafx.stage.Stage;
 import main.java.com.zoo.siraj.*;
 
 import java.awt.event.MouseEvent;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
@@ -22,7 +23,7 @@ import java.util.List;
 
 public class AnimalsController {
     @FXML
-    private Label lablAnimalType,lablId,lablCage,lablSize,lablFoodType,lablMax;
+    private Label lablAnimalType,lablId,lablCage,lablEmployee,lablSize,lablFoodType,lablMax;
     @FXML
     private Button close;
     @FXML
@@ -30,7 +31,7 @@ public class AnimalsController {
     @FXML
     private ComboBox animalType;
     @FXML
-    private ComboBox addCage;
+    private ComboBox addCage,addEmployee;
     @FXML
     private ComboBox addAnimalSize;
     @FXML
@@ -52,11 +53,14 @@ public class AnimalsController {
         //just for testing in the end i will delete it
         Cage cage = new Cage(5);
         Main.zoo.addCage(cage);
+        Employee employee = new Employee("Mohammed");
+        Main.zoo.addEmployee(employee);
         ////////////////
         uploadDetails();
         listOfAnimals.setMouseTransparent(false);
         animalType.setVisible(false);
         addCage.setVisible(false);
+        addEmployee.setVisible(false);
         addAnimalSize.setVisible(false);
         foodType.setVisible(false);
         maxFoodAmount.setVisible(false);
@@ -81,6 +85,7 @@ public class AnimalsController {
             listOfAnimals.setMouseTransparent(true);
             animalType.setVisible(true);
             addCage.setVisible(true);
+            addEmployee.setVisible(true);
             addAnimalSize.setVisible(true);
             lablFoodType.setVisible(true);
             foodType.setVisible(true);
@@ -92,29 +97,36 @@ public class AnimalsController {
 
         });
         cancelAdding.setOnAction(cancel->{
-            listOfAnimals.setMouseTransparent(false);
-            animalType.setVisible(false);
-            addCage.setVisible(false);
-            addAnimalSize.setVisible(false);
-            foodType.setVisible(false);
-            maxFoodAmount.setVisible(false);
-            add.setVisible(false);
-            cancelAdding.setVisible(false);
-            addAnimal.setDisable(false);
+            disableDetails();
 
         });
         add.setOnAction(add->{
             addAnimalToTheList();
+            disableDetails();
         });
         feedAnimal.setOnAction(feeding->{
             Application app = new Application() {
                 @Override
                 public void start(Stage primaryStage) throws Exception {
-                    Parent root = FXMLLoader.load(getClass().getResource("FeedAnimal.fxml"));
-                    primaryStage.setTitle("FeedAnimal Controller");
-                    Scene primScene = new Scene(root, 700,400);
-                    primaryStage.setScene(primScene);
-                    primaryStage.show();
+                    FXMLLoader loader = new FXMLLoader();
+                    loader.setLocation(Main.class.getResource("FeedAnimal.fxml"));
+                    try {
+                        Parent root = loader.load();
+                        primaryStage.setTitle("Feed Animal");
+                        Scene primScene = new Scene(root, 700,400);
+                        primaryStage.setScene(primScene);
+                        primaryStage.show();
+                        FeedAnimal feedAnimalController = loader.getController();
+
+                        TreeItem item = (TreeItem) listOfAnimals.getSelectionModel().getSelectedItem();
+                        Animal animalById = Main.zoo.getAnimalById((String) item.getValue());
+                        Employee employee1 = Main.zoo.getEmployeeToThisAnimal(animalById);
+
+                        feedAnimalController.setDetails(animalById,employee1);
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+
                 }
             };
             try {
@@ -124,6 +136,19 @@ public class AnimalsController {
             }
 
         });
+    }
+
+    private void disableDetails() {
+        listOfAnimals.setMouseTransparent(false);
+        animalType.setVisible(false);
+        addCage.setVisible(false);
+        addEmployee.setVisible(false);
+        addAnimalSize.setVisible(false);
+        foodType.setVisible(false);
+        maxFoodAmount.setVisible(false);
+        add.setVisible(false);
+        cancelAdding.setVisible(false);
+        addAnimal.setDisable(false);
     }
 
     private void uploadDetails() {
@@ -139,6 +164,11 @@ public class AnimalsController {
         );
         addCage.getItems().addAll(optionsCage);
         addCage.getSelectionModel().selectLast();
+        ObservableList<String> optionEmployee = FXCollections.observableList(
+                Main.zoo.getEmployees()
+        );
+        addEmployee.getItems().addAll(optionEmployee);
+        addEmployee.getSelectionModel().selectLast();
         ObservableList<Integer> options2 =
                 FXCollections.observableArrayList(
                         1,2,3,4,5,6,7,8,9,10
@@ -163,21 +193,23 @@ public class AnimalsController {
     }
 
     private void addAnimalToTheList() {
+        Cage cageWithThisSize = Main.zoo.getCageWithThisSize((Integer) addCage.getSelectionModel().getSelectedItem());
+        Employee employeeWithThisId = Main.zoo.getEmployeeWithThisId((String) addEmployee.getSelectionModel().getSelectedItem());
         if (animalType.getSelectionModel().getSelectedItem().equals("Snake")){
-            Cage cageWithThisSize = Main.zoo.getCageWithThisSize((Integer) addCage.getSelectionModel().getSelectedItem());
             Animal snake = new Snake((Integer) addAnimalSize.getSelectionModel().getSelectedItem());
             snake.addFood((Food) foodType.getSelectionModel().getSelectedItem(),(Integer)maxFoodAmount.getSelectionModel().getSelectedItem());
             Main.zoo.addAnimalToCage(snake,cageWithThisSize);
+            Main.zoo.addToTreatmentEmployee(employeeWithThisId,snake);
         }else if (animalType.getSelectionModel().getSelectedItem().equals("Lion")){
-            Cage cageWithThisSize = Main.zoo.getCageWithThisSize((Integer) addCage.getSelectionModel().getSelectedItem());
             Animal lion = new Lion((Integer) addAnimalSize.getSelectionModel().getSelectedItem());
             lion.addFood((Food) foodType.getSelectionModel().getSelectedItem(),(Integer)maxFoodAmount.getSelectionModel().getSelectedItem());
             Main.zoo.addAnimalToCage(lion,cageWithThisSize);
+            Main.zoo.addToTreatmentEmployee(employeeWithThisId,lion);
         }else{
-            Cage cageWithThisSize = Main.zoo.getCageWithThisSize((Integer) addCage.getSelectionModel().getSelectedItem());
             Animal monkey = new Monkey((Integer) addAnimalSize.getSelectionModel().getSelectedItem());
             monkey.addFood((Food) foodType.getSelectionModel().getSelectedItem(),(Integer)maxFoodAmount.getSelectionModel().getSelectedItem());
             Main.zoo.addAnimalToCage(monkey,cageWithThisSize);
+            Main.zoo.addToTreatmentEmployee(employeeWithThisId,monkey);
         }
         setToTreeView();
 
@@ -195,10 +227,12 @@ public class AnimalsController {
         }else {
             Animal animalById = Main.zoo.getAnimalById((String) item.getValue());
             Cage cageToThisAnimal = Main.zoo.getCageToThisAnimal(animalById);
+            Employee employeeToThisAnimal = Main.zoo.getEmployeeToThisAnimal(animalById);
             lablAnimalType.setText("Animal Type: " +animalById.getName());
             lablId.setText("ID: "+ animalById.getId());
             lablSize.setText("Animal Size: " + String.valueOf(animalById.getCageSize()));
             lablCage.setText("Cage:  ID: " + cageToThisAnimal.getId() + "  size: "+ cageToThisAnimal.getSize());
+            lablEmployee.setText("Employee: ID: " + employeeToThisAnimal.getId());
             lablMax.setVisible(false);
             lablFoodType.setVisible(false);
         }
@@ -226,6 +260,7 @@ public class AnimalsController {
         lablFoodType.setVisible(true);
         lablSize.setText("Animal Size: ");
         lablCage.setText("Cage: ");
+        lablEmployee.setText("Employee: ");
         lablId.setText("ID: ");
         lablAnimalType.setText("Animal Type: ");
     }

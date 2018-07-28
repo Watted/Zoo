@@ -58,4 +58,12 @@ public class Employee implements Serializable {
                 ", treatmentAnimals=" + treatmentAnimals +
                 '}';
     }
+
+    public String getId() {
+        return this.id;
+    }
+
+    public boolean contentThisAnimal(Animal animalById) {
+        return this.treatmentAnimals.contains(animalById);
+    }
 }
