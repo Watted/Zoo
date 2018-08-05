@@ -1,6 +1,9 @@
 package main.java.com.zoo.siraj;
 
 
+import javafx.application.Platform;
+import javafx.scene.control.Alert;
+
 import java.io.*;
 import java.util.*;
 
@@ -178,6 +181,20 @@ public class Zoo implements Serializable {
         Zoo zoo =(Zoo) stream.readObject();
         stream.close();
         return zoo;
+    }
+    public static Zoo loadZoo() {
+        try {
+            return loadFromFile();
+        }
+        catch (Exception e) {
+            Platform.runLater(() -> {
+                Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+                alert.setHeaderText("Created new Zoo Successfully !");
+                alert.showAndWait();
+            });
+
+            return new Zoo();
+        }
     }
 
     @Override

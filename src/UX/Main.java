@@ -11,7 +11,7 @@ import java.awt.*;
 
 public class Main extends Application {
 
-    protected static Zoo zoo = new Zoo();
+    final protected static Zoo zoo = Zoo.loadZoo();
 
     @Override
     public void start(Stage primaryStage) throws Exception{
