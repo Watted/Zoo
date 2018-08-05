@@ -20,7 +20,9 @@ public class Zoo implements Serializable {
     public void addCage(Cage cage) {
         cages.put(cage.getId(),cage);
     }
-
+    public Map<String,Cage> getCagesMap(){
+        return  cages;
+    }
     public List<Integer> getCages(){
         List<Integer> listOfInteger = new ArrayList<>();
         Set<Map.Entry<String, Cage>> entries = this.cages.entrySet();
@@ -41,7 +43,9 @@ public class Zoo implements Serializable {
         }
         return listOfInteger;
     }
-
+    public Map<String,Employee> getEmployeesMap(){
+        return employees;
+    }
     public List<String> getAnimals(String animal){
         List<String> listOfAnimal = new ArrayList<>();
         Set<Map.Entry<String, Cage>> entries = this.cages.entrySet();

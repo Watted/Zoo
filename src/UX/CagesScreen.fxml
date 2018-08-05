@@ -1,22 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import javafx.scene.layout.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.Pane?>
-
 <AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="UX.CagesController">
    <children>
       <Pane layoutX="179.0" prefHeight="400.0" prefWidth="500.0">
          <children>
             <Label fx:id="cageIdL" layoutX="14.0" layoutY="14.0" prefHeight="30.0" prefWidth="480.0" text="Cage ID :" />
             <Label fx:id="numberOfAnimalsL" layoutX="14.0" layoutY="45.0" prefHeight="30.0" prefWidth="480.0" text="Number Of Animals :" />
-            <Label fx:id="specyL" layoutX="14.0" layoutY="82.0" prefHeight="30.0" prefWidth="480.0" text="Specie" />
+            <Label fx:id="specyL" layoutX="14.0" layoutY="82.0" prefHeight="30.0" prefWidth="480.0" text="Specie:" />
             <Label fx:id="sizeL" layoutX="14.0" layoutY="119.0" prefHeight="30.0" prefWidth="480.0" text="Cage Size :" />
-            <Button fx:id="removeCage" layoutX="356.0" layoutY="355.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="130.0" text="Remove Cage" />
-            <TextField fx:id="addNumOfAnimals" layoutX="234.0" layoutY="82.0" />
-            <TextField fx:id="addSpecy" layoutX="234.0" layoutY="119.0" />
+            <Button fx:id="removeCage" layoutX="356.0" layoutY="119.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="130.0" text="Remove Cage" />
+            <ComboBox fx:id="addNumOfAnimals" layoutX="119.0" layoutY="119.0" />
             <Button fx:id="add" layoutX="356.0" layoutY="355.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="130.0" text="Add" />
             <Button fx:id="cancel" layoutX="14.0" layoutY="355.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="130.0" text="Cancel Adding" />
          </children>
@@ -30,7 +26,7 @@
       <Pane layoutY="132.0" prefHeight="267.0" prefWidth="181.0">
          <children>
             <Label layoutX="51.0" layoutY="14.0" text="CageList" />
-            <ListView layoutX="7.0" layoutY="42.0" prefHeight="215.0" prefWidth="160.0" />
+            <ListView fx:id="cagesList" layoutX="7.0" layoutY="42.0" prefHeight="215.0" prefWidth="160.0" />
          </children>
       </Pane>
    </children>

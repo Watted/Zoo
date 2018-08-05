@@ -1,15 +1,17 @@
 package main.java.com.zoo.siraj;
 
+import javax.swing.*;
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 public class Employee implements Serializable {
     private static int idOfEmployee = 0;
     private String id;
     private String name;
     private List<Animal> treatmentAnimals;
-
     public Employee(String name) {
         this.id = String.valueOf(++idOfEmployee);
         this.name = name;
@@ -65,5 +67,14 @@ public class Employee implements Serializable {
 
     public boolean contentThisAnimal(Animal animalById) {
         return this.treatmentAnimals.contains(animalById);
+    }
+
+
+    public Set<String> getTreatmentAnimalsTypes() {
+        Set<String> s = new HashSet<>();
+        for(Animal animal: treatmentAnimals){
+            s.add(animal.getName());
+        }
+        return s;
     }
 }
