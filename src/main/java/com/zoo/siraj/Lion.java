@@ -23,14 +23,15 @@ public class Lion extends Animal {
             while (iterator.hasNext()){
                 Map.Entry<Food, Integer> next = iterator.next();
                 Integer value = next.getValue();
-                System.out.println(value);
                 if (value!=0){
+                    System.out.println(value);
                     value -= 1;
                     next.setValue(value);
                     flag = true;
-                }else {
-                    stop();
                 }
+            }
+            if (!flag){
+                stop();
             }
             System.out.println("eaten " + flag);
         });
