@@ -113,7 +113,6 @@ public class AnimalsController {
 
                         TreeItem item = (TreeItem) listOfAnimals.getSelectionModel().getSelectedItem();
                         Animal animalById = Main.zoo.getAnimalById((String) item.getValue());
-                        //Employee employee1 = Main.zoo.getEmployeeToThisAnimal(animalById);
 
                         addNewFood.setDetails(animalById);
                     } catch (IOException e) {
@@ -219,7 +218,8 @@ public class AnimalsController {
 
     private void addAnimalToTheList() {
         String selectedItem = (String) addCage.getSelectionModel().getSelectedItem();
-        String substring = selectedItem.substring(4, 5);
+        int i = selectedItem.indexOf(',');
+        String substring = selectedItem.substring("Id: ".length(), i);
         System.out.println(substring);
 
         Cage cageWithThisSize = Main.zoo.getCageForThisId(substring);
