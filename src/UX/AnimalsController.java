@@ -57,7 +57,8 @@ public class AnimalsController {
         maxFoodAmount.setVisible(false);
         add.setVisible(false);
         cancelAdding.setVisible(false);
-        //addFood.setVisible(false);
+        addFood.setVisible(false);
+        feedAnimal.setVisible(false);
 
 
         setToTreeView();
@@ -74,6 +75,7 @@ public class AnimalsController {
 
         close.setOnAction(close->((Stage) ((Button) close.getSource()).getScene().getWindow()).close());
         addAnimal.setOnAction(addAnimals->{
+            resetLabels();
             listOfAnimals.setMouseTransparent(true);
             animalType.setVisible(true);
             addCage.setVisible(true);
@@ -86,7 +88,7 @@ public class AnimalsController {
             add.setVisible(true);
             cancelAdding.setVisible(true);
             addAnimal.setDisable(true);
-            addFood.setVisible(false);
+            //addFood.setVisible(false);
 
         });
         cancelAdding.setOnAction(cancel->{
@@ -171,7 +173,8 @@ public class AnimalsController {
         maxFoodAmount.setVisible(false);
         add.setVisible(false);
         cancelAdding.setVisible(false);
-        addFood.setVisible(true);
+        addFood.setVisible(false);
+        feedAnimal.setVisible(false);
         addAnimal.setDisable(false);
     }
 
@@ -220,10 +223,13 @@ public class AnimalsController {
         String selectedItem = (String) addCage.getSelectionModel().getSelectedItem();
         int i = selectedItem.indexOf(',');
         String substring = selectedItem.substring("Id: ".length(), i);
-        System.out.println(substring);
+        String select = (String) addEmployee.getSelectionModel().getSelectedItem();
+        int j = select.indexOf(',');
+        String substring1 = select.substring("Id: ".length(),j);
+
 
         Cage cageWithThisSize = Main.zoo.getCageForThisId(substring);
-        Employee employeeWithThisId = Main.zoo.getEmployeeWithThisId((String) addEmployee.getSelectionModel().getSelectedItem());
+        Employee employeeWithThisId = Main.zoo.getEmployeeWithThisId(substring1);
         if (animalType.getSelectionModel().getSelectedItem().equals("Snake")){
             Animal snake = new Snake((Integer) addAnimalSize.getSelectionModel().getSelectedItem());
             snake.addFood((Food) foodType.getSelectionModel().getSelectedItem(),(Integer)maxFoodAmount.getSelectionModel().getSelectedItem());
@@ -252,6 +258,7 @@ public class AnimalsController {
         TreeItem parent = item.getParent();
 
         if (parent==null|| parent.getParent()==null){
+            resetLabels();
             return;
         }else {
             Animal animalById = Main.zoo.getAnimalById((String) item.getValue());
@@ -261,9 +268,11 @@ public class AnimalsController {
             lablId.setText("ID: "+ animalById.getId());
             lablSize.setText("Animal Size: " + String.valueOf(animalById.getCageSize()));
             lablCage.setText("Cage:  ID: " + cageToThisAnimal.getId() + "  size: "+ cageToThisAnimal.getSize());
-            lablEmployee.setText("Employee: ID: " + employeeToThisAnimal.getId());
+            lablEmployee.setText("Employee: ID: " + employeeToThisAnimal.getId()+" name: " + employeeToThisAnimal.getName());
             lablMax.setVisible(false);
             lablFoodType.setVisible(false);
+            addFood.setVisible(true);
+            feedAnimal.setVisible(true);
         }
     }
 
@@ -287,6 +296,8 @@ public class AnimalsController {
     private void resetLabels() {
         lablMax.setVisible(true);
         lablFoodType.setVisible(true);
+        addFood.setVisible(false);
+        feedAnimal.setVisible(false);
         lablSize.setText("Animal Size: ");
         lablCage.setText("Cage: ");
         lablEmployee.setText("Employee: ");

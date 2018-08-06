@@ -30,7 +30,7 @@ public class Snake extends Animal {
                     next.setValue(value);
                     flag = true;
                 }
-            System.out.println(Thread.currentThread().getId());
+                System.out.println(Thread.currentThread().getId());
                 if (flag==false){
                     stop();
                 }

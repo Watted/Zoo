@@ -47,7 +47,7 @@ public class Zoo implements Serializable {
         Iterator<Map.Entry<String, Employee>> iterator = entries.iterator();
         while (iterator.hasNext()){
             Map.Entry<String, Employee> next = iterator.next();
-            listOfInteger.add(next.getValue().getId());
+            listOfInteger.add("Id: "+ next.getValue().getId()+", name: "+next.getValue().getName());
         }
         return listOfInteger;
     }
