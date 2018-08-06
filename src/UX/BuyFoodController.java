@@ -37,11 +37,17 @@ public class BuyFoodController {
         });
         buy.setOnAction(buy->{
 
-            Main.zoo.buyFood(f.get(type.getSelectionModel().getSelectedItem()),
-                    Integer.parseInt(amount.getSelectionModel().getSelectedItem().toString()),"");
-            Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-            alert.setHeaderText("Food Brought Successfuly !");
-            alert.showAndWait();
+            if(Main.zoo.buyFood(f.get(type.getSelectionModel().getSelectedItem().toString()),
+                    Integer.parseInt(amount.getSelectionModel().getSelectedItem().toString()),Main.day+"")){
+                Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+                alert.setHeaderText("Food Brought Successfuly !");
+                alert.showAndWait();
+            }
+            else{
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setHeaderText("No Animal Eats That Shit !");
+                alert.showAndWait();
+            }
         });
     }
 }

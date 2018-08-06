@@ -8,10 +8,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.Label;
-import javafx.scene.control.SplitPane;
+import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
@@ -89,6 +86,8 @@ public class Controller {
     @FXML
     private Label insectsAlarmNum;
     @FXML
+    private ListView notifications;
+    @FXML
     private void initialize() {
         HashMap<String,String> images = new HashMap<>();
         images.put("Lion","UX\\imgs\\lion.jpg");
@@ -124,17 +123,17 @@ public class Controller {
                 if (Main.zoo.getFoods().get(Food.plants) == 0) plantsAlarm.setFill(Color.RED);
                 else plantsAlarm.setFill(Color.GREEN);
                 if (Main.zoo.getFoods().get(Food.grains) == 0) grainsAlarm.setFill(Color.RED);
-                else plantsAlarm.setFill(Color.GREEN);
+                else grainsAlarm.setFill(Color.GREEN);
                 if (Main.zoo.getFoods().get(Food.meats) == 0) meatAlarm.setFill(Color.RED);
-                else plantsAlarm.setFill(Color.GREEN);
+                else meatAlarm.setFill(Color.GREEN);
                 if (Main.zoo.getFoods().get(Food.seeds) == 0) seedsAlarm.setFill(Color.RED);
-                else plantsAlarm.setFill(Color.GREEN);
+                else seedsAlarm.setFill(Color.GREEN);
                 if (Main.zoo.getFoods().get(Food.worms) == 0) wormsAlarm.setFill(Color.RED);
-                else plantsAlarm.setFill(Color.GREEN);
+                else wormsAlarm.setFill(Color.GREEN);
                 if (Main.zoo.getFoods().get(Food.insects) == 0) insectsAlarm.setFill(Color.RED);
-                else plantsAlarm.setFill(Color.GREEN);
+                else insectsAlarm.setFill(Color.GREEN);
                 if (Main.zoo.getFoods().get(Food.fruits) == 0) fruitAlarm.setFill(Color.RED);
-                else plantsAlarm.setFill(Color.GREEN);
+                else fruitAlarm.setFill(Color.GREEN);
                 plantsAlarmNum.setText(Main.zoo.getFoods().get(Food.plants).toString());
                 grainsAlarmNUM.setText(Main.zoo.getFoods().get(Food.grains).toString());
                 seedsAlarmNum.setText(Main.zoo.getFoods().get(Food.seeds).toString());
@@ -156,9 +155,21 @@ public class Controller {
                     seconds++;
                     secs.setText(seconds+"");
                 }
-                if(minute == 10) {
+                if(minute == 1) {
+                    Main.day++;
+                    Main.zoo.resetAnimalBellies();
                     mins.setText("00");
                     secs.setText("00");
+                    for (String timeF : Main.zoo.getDealsPerDate().keySet()) {
+                        int perFood = Integer.parseInt(timeF);
+                        if(Main.day - perFood >= 2){
+                            notifications.getItems().add(new String(
+                                    Main.zoo.getDealsPerDate().get(perFood+"").getCurrent().toString()
+                                            + " Is Wasted !"));
+                            Main.zoo.removeFoodAmount(Main.zoo.getDealsPerDate().get(perFood+""));
+                            Main.zoo.getDealsPerDate().remove(timeF);
+                        }
+                    }
                 }
 
 
@@ -182,7 +193,6 @@ public class Controller {
                 if (c.getContentAnimal().size() > 0) {
                     Platform.runLater(() -> {
                         animalTypeL.setText(animalTypeL.getText().substring(0, 14) + " : " + c.getContentAnimal().get(0).getName());
-                        System.out.println(images.get(c.getContentAnimal().get(0).getName()));
                         imgBox.setImage(new Image(images.get(c.getContentAnimal().get(0).getName())));
                     });
                 }

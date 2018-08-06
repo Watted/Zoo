@@ -1,13 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.image.*?>
-<?import javafx.geometry.*?>
-<?import javafx.scene.text.*?>
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.*?>
-<?import java.lang.*?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.*?>
-<?import javafx.scene.layout.GridPane?>
-
+<?import javafx.scene.shape.*?>
+<?import javafx.scene.text.*?>
 <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="778.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="UX.Controller">
    <children>
       <Label fx:id="welcomeLabel" contentDisplay="CENTER" layoutX="150" layoutY="263.0" style="-fx-background-color: #E0E0E0;" text="Welcome To The Zoo !" textAlignment="CENTER" textFill="#22d31c" wrapText="true">
@@ -36,6 +34,49 @@
                         <Font name="Times New Roman Bold" size="24.0" />
                      </font>
                   </Label>
+                  <ListView fx:id="notifications" layoutX="15.0" layoutY="68.0" prefHeight="176.0" prefWidth="336.0" />
+                  <GridPane alignment="CENTER" layoutX="15.0" layoutY="264.0" prefHeight="340.0" prefWidth="336.0">
+                    <columnConstraints>
+                      <ColumnConstraints hgrow="SOMETIMES" maxWidth="162.0" minWidth="10.0" prefWidth="88.0" />
+                        <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="162.0" minWidth="10.0" prefWidth="100.0" />
+                      <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="246.0" minWidth="10.0" prefWidth="246.0" />
+                    </columnConstraints>
+                    <rowConstraints>
+                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                    </rowConstraints>
+                     <padding>
+                        <Insets bottom="1.0" left="1.0" right="1.0" top="1.0" />
+                     </padding>
+                     <children>
+                        <Label prefHeight="21.0" prefWidth="168.0" text="Plants" />
+                        <Label prefHeight="21.0" prefWidth="168.0" text="Grains" GridPane.rowIndex="1" />
+                        <Label prefHeight="21.0" prefWidth="168.0" text="Seeds" GridPane.rowIndex="2" />
+                        <Label prefHeight="21.0" prefWidth="168.0" text="Meat" GridPane.rowIndex="3" />
+                        <Label prefHeight="21.0" prefWidth="168.0" text="Fruit" GridPane.rowIndex="4" />
+                        <Label prefHeight="21.0" prefWidth="168.0" text="Worms" GridPane.rowIndex="5" />
+                        <Label prefHeight="21.0" prefWidth="168.0" text="Insects" GridPane.rowIndex="6" />
+                        <Circle fx:id="plantsAlarm" fill="#ff1f1f" radius="20.0" stroke="BLACK" strokeType="INSIDE" GridPane.columnIndex="2" />
+                        <Label  fx:id="plantsAlarmNum" alignment="CENTER" contentDisplay="CENTER" prefHeight="21.0" prefWidth="168.0" text="0" GridPane.columnIndex="1" />
+                        <Circle fx:id="grainsAlarm" fill="#ff1f1f" radius="20.0" stroke="BLACK" strokeType="INSIDE" GridPane.columnIndex="2" GridPane.rowIndex="1" />
+                        <Label  fx:id="grainsAlarmNUM" alignment="CENTER" prefHeight="21.0" prefWidth="168.0" text="0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                        <Circle fx:id="seedsAlarm" fill="#ff1f1f" radius="20.0" stroke="BLACK" strokeType="INSIDE" GridPane.columnIndex="2" GridPane.rowIndex="2" />
+                        <Label  fx:id="seedsAlarmNum" alignment="CENTER" prefHeight="21.0" prefWidth="168.0" text="0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                        <Circle fx:id="meatAlarm" fill="#ff1f1f" radius="20.0" stroke="BLACK" strokeType="INSIDE" GridPane.columnIndex="2" GridPane.rowIndex="3" />
+                        <Label  fx:id="meatAlarmNum" alignment="CENTER" prefHeight="21.0" prefWidth="168.0" text="0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                        <Circle fx:id="fruitAlarm" fill="#ff1f1f" radius="20.0" stroke="BLACK" strokeType="INSIDE" GridPane.columnIndex="2" GridPane.rowIndex="4" />
+                        <Label  fx:id="fruitAlarmNum" alignment="CENTER" prefHeight="21.0" prefWidth="168.0" text="0" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                        <Circle fx:id="wormsAlarm" fill="#ff1f1f" radius="20.0" stroke="BLACK" strokeType="INSIDE" GridPane.columnIndex="2" GridPane.rowIndex="5" />
+                        <Label  fx:id="wormsAlarmNum" alignment="CENTER" prefHeight="21.0" prefWidth="168.0" text="0" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+                        <Circle fx:id="insectsAlarm" fill="#ff1f1f" radius="20.0" stroke="BLACK" strokeType="INSIDE" GridPane.columnIndex="2" GridPane.rowIndex="6" />
+                        <Label  fx:id="insectsAlarmNum" alignment="CENTER" prefHeight="21.0" prefWidth="168.0" text="0" GridPane.columnIndex="1" GridPane.rowIndex="6" />
+                     </children>
+                  </GridPane>
                </children></AnchorPane>
           <AnchorPane minHeight="0.0" minWidth="200.0" prefHeight="620.0" prefWidth="930.0">
                <children>
@@ -58,7 +99,7 @@
             <Font name="Candara" size="27.0" />
          </font>
       </Label>
-      <Label  alignment="CENTER" layoutX="77.0" layoutY="695.0" prefHeight="33.0" prefWidth="20.0" text=":" textFill="#650a0a">
+      <Label alignment="CENTER" layoutX="77.0" layoutY="695.0" prefHeight="33.0" prefWidth="20.0" text=":" textFill="#650a0a">
          <font>
             <Font name="Candara" size="27.0" />
          </font>

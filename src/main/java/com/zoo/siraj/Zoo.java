@@ -24,6 +24,10 @@ public class Zoo implements Serializable {
         }
     }
 
+    public Map<String, FoodDeal> getDealsPerDate() {
+        return dealsPerDate;
+    }
+
     public Map<Food, Integer> getFoods() {
         return foods;
     }
@@ -137,6 +141,17 @@ public class Zoo implements Serializable {
     public boolean buyFood(Food food, int amountToBuy,String time) {
         boolean toEat = false;
         for (Animal animal : animals.values()) {
+            for (Food food1 : animal.getExistingFood().keySet()) {
+                if(food.equals(food1)) {
+                    toEat = true;
+                    break;
+                }
+            }
+        }
+        if(toEat){
+            this.foods.put(food,this.foods.get(food)+amountToBuy);
+            this.dealsPerDate.put(time,new FoodDeal(food,amountToBuy));
+            return true;
         }
         return false;
     }
@@ -234,5 +249,18 @@ public class Zoo implements Serializable {
 
     public Map<Food, Integer> getFood() {
         return this.foods;
+    }
+
+    public void resetAnimalBellies() {
+        for (Animal animal : animals.values()) {
+            animal.resetAllEatenFood();
+        }
+    }
+
+    public void removeFoodAmount(FoodDeal foodDeal) {
+        Food f = foodDeal.getCurrent();
+        int am = foodDeal.getAmount();
+        int current = this.foods.get(f);
+        this.foods.put(f,Math.max(0,current-am));
     }
 }

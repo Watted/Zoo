@@ -12,7 +12,7 @@ import java.awt.*;
 public class Main extends Application {
 
     final protected static Zoo zoo = Zoo.loadZoo();
-
+    protected static int day;
     @Override
     public void start(Stage primaryStage) throws Exception{
         Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
@@ -20,6 +20,7 @@ public class Main extends Application {
         primaryStage.setTitle("Hello World");
         Scene primScene = new Scene(root, screenSize.getWidth()*0.75, screenSize.getHeight());
         primaryStage.setScene(primScene);
+        day = 0;
         primaryStage.show();
     }
 
