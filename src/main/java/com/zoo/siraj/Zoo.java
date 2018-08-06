@@ -23,13 +23,14 @@ public class Zoo implements Serializable {
     public Map<String,Cage> getCagesMap(){
         return  cages;
     }
-    public List<Integer> getCages(){
-        List<Integer> listOfInteger = new ArrayList<>();
+
+    public List<String> getCages(){
+        List<String> listOfInteger = new ArrayList<>();
         Set<Map.Entry<String, Cage>> entries = this.cages.entrySet();
         Iterator<Map.Entry<String, Cage>> iterator = entries.iterator();
         while (iterator.hasNext()){
             Map.Entry<String, Cage> next = iterator.next();
-            listOfInteger.add(next.getValue().getSize());
+            listOfInteger.add("Id: "+ next.getKey()+", Size: "+ next.getValue().getSize());
         }
         return listOfInteger;
     }
@@ -202,20 +203,6 @@ public class Zoo implements Serializable {
         return null;
     }
 
-
-    public Cage getCageWithThisSize(int selectedItem) {
-        Set<Map.Entry<String, Cage>> entries = this.cages.entrySet();
-        Iterator<Map.Entry<String, Cage>> iterator = entries.iterator();
-        while (iterator.hasNext()){
-            Map.Entry<String, Cage> next = iterator.next();
-            Cage value = next.getValue();
-            if (selectedItem==value.getSize()){
-                return value;
-            }
-        }
-        return null;
-    }
-
     public Employee getEmployeeToThisAnimal(Animal animalById) {
         Set<Map.Entry<String, Employee>> entries = this.employees.entrySet();
         Iterator<Map.Entry<String, Employee>> iterator = entries.iterator();
@@ -232,5 +219,9 @@ public class Zoo implements Serializable {
 
     public Employee getEmployeeWithThisId(String id) {
         return this.employees.get(id);
+    }
+
+    public Cage getCageForThisId(String parseInt) {
+        return this.cages.get(parseInt);
     }
 }

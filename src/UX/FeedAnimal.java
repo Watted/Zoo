@@ -29,6 +29,10 @@ public class FeedAnimal {
     @FXML
     private void initialize() {
 
+        type.setOnAction(type->{
+            updateDetails();
+        });
+
         feed.setOnAction(feed->{
             Main.zoo.feedAnimal(employee,animal,(Food) type.getSelectionModel().getSelectedItem(),(Integer) amount.getSelectionModel().getSelectedItem());
             Stage thisStage = (Stage) ((Button) feed.getSource()).getScene().getWindow();
@@ -41,29 +45,38 @@ public class FeedAnimal {
         });
     }
 
+    private void updateDetails() {
+        int maxFoodPerKind = this.animal.getMaxFoodPerKind((Food) this.type.getSelectionModel().getSelectedItem());
+        List<Integer> amounts = new ArrayList<>();
+        for (int i = 1; i <= maxFoodPerKind; i++) {
+            amounts.add(i);
+        }
+        ObservableList<Integer> options =
+                FXCollections.observableArrayList(
+                        amounts
+                );
+        amount.getItems().clear();
+        amount.getItems().addAll(options);
+        amount.getSelectionModel().selectLast();
+    }
+
     public void setDetails(Animal animal,Employee employee) {
         this.employee = employee;
         this.animal = animal;
         Map<Food, Integer> food = animal.getMaxFood();
         Set<Map.Entry<Food, Integer>> entries = food.entrySet();
-        List<Integer> listOfAmount = new ArrayList<>();
+        List<Food> listOfFood = new ArrayList<>();
         Iterator<Map.Entry<Food, Integer>> iterator = entries.iterator();
-        Food food1 = null;
         while (iterator.hasNext()){
             Map.Entry<Food, Integer> next = iterator.next();
-            Integer max = next.getValue();
-            for (int i = 1; i <= max ; i++) {
-                listOfAmount.add(i);
-            }
-            food1 = next.getKey();
+            listOfFood.add(next.getKey());
         }
-        ObservableList<Integer> options =
+        ObservableList<Food> options1 =
                 FXCollections.observableArrayList(
-                        listOfAmount
+                        listOfFood
                 );
-        amount.getItems().addAll(options);
-        amount.getSelectionModel().selectLast();
-        type.getItems().add(food1);
+        type.getItems().addAll(options1);
         type.getSelectionModel().selectLast();
+        //updateDetails();
     }
 }

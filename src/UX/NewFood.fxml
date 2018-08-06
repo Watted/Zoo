@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="UX.AddNewFood">
+   <children>
+      <Pane prefHeight="400.0" prefWidth="601.0">
+         <children>
+            <Button fx:id="cancelbtn" layoutX="138.0" layoutY="335.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="120.0" text="Cancel" />
+            <Button fx:id="addbtn" layoutX="324.0" layoutY="335.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="136.0" text="Add Food" />
+            <Label layoutX="138.0" layoutY="97.0" prefHeight="21.0" prefWidth="103.0" text="Food" />
+            <ComboBox fx:id="foodtypeCombo" layoutX="300.0" layoutY="92.0" prefWidth="150.0" />
+            <Label layoutX="138.0" layoutY="155.0" prefHeight="21.0" prefWidth="95.0" text="Max Amount:" />
+            <ComboBox fx:id="amountCobo" layoutX="300.0" layoutY="150.0" prefWidth="150.0" />
+         </children></Pane>
+   </children>
+</AnchorPane>

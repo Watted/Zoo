@@ -24,7 +24,7 @@ public class AnimalsController {
     @FXML
     private Button close;
     @FXML
-    private Button addAnimal;
+    private Button addAnimal, addFood;
     @FXML
     private ComboBox animalType;
     @FXML
@@ -57,6 +57,7 @@ public class AnimalsController {
         maxFoodAmount.setVisible(false);
         add.setVisible(false);
         cancelAdding.setVisible(false);
+        //addFood.setVisible(false);
 
 
         setToTreeView();
@@ -85,6 +86,7 @@ public class AnimalsController {
             add.setVisible(true);
             cancelAdding.setVisible(true);
             addAnimal.setDisable(true);
+            addFood.setVisible(false);
 
         });
         cancelAdding.setOnAction(cancel->{
@@ -94,6 +96,37 @@ public class AnimalsController {
         add.setOnAction(add->{
             addAnimalToTheList();
             disableDetails();
+        });
+        addFood.setOnAction(newfood->{
+            Application app = new Application() {
+                @Override
+                public void start(Stage primaryStage) throws Exception {
+                    FXMLLoader loader = new FXMLLoader();
+                    loader.setLocation(Main.class.getResource("NewFood.fxml"));
+                    try {
+                        Parent root = loader.load();
+                        primaryStage.setTitle("New Food");
+                        Scene primScene = new Scene(root, 700,400);
+                        primaryStage.setScene(primScene);
+                        primaryStage.show();
+                        AddNewFood addNewFood = loader.getController();
+
+                        TreeItem item = (TreeItem) listOfAnimals.getSelectionModel().getSelectedItem();
+                        Animal animalById = Main.zoo.getAnimalById((String) item.getValue());
+                        //Employee employee1 = Main.zoo.getEmployeeToThisAnimal(animalById);
+
+                        addNewFood.setDetails(animalById);
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+
+                }
+            };
+            try {
+                app.start(new Stage());
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
         });
         feedAnimal.setOnAction(feeding->{
             Application app = new Application() {
@@ -139,6 +172,7 @@ public class AnimalsController {
         maxFoodAmount.setVisible(false);
         add.setVisible(false);
         cancelAdding.setVisible(false);
+        addFood.setVisible(true);
         addAnimal.setDisable(false);
     }
 
@@ -150,7 +184,7 @@ public class AnimalsController {
         animalType.getItems().addAll(options);
         animalType.getSelectionModel().selectFirst();
 
-        ObservableList<Integer> optionsCage = FXCollections.observableList(
+        ObservableList<String> optionsCage = FXCollections.observableList(
                 Main.zoo.getCages()
         );
         addCage.getItems().addAll(optionsCage);
@@ -184,7 +218,11 @@ public class AnimalsController {
     }
 
     private void addAnimalToTheList() {
-        Cage cageWithThisSize = Main.zoo.getCageWithThisSize((Integer) addCage.getSelectionModel().getSelectedItem());
+        String selectedItem = (String) addCage.getSelectionModel().getSelectedItem();
+        String substring = selectedItem.substring(4, 5);
+        System.out.println(substring);
+
+        Cage cageWithThisSize = Main.zoo.getCageForThisId(substring);
         Employee employeeWithThisId = Main.zoo.getEmployeeWithThisId((String) addEmployee.getSelectionModel().getSelectedItem());
         if (animalType.getSelectionModel().getSelectedItem().equals("Snake")){
             Animal snake = new Snake((Integer) addAnimalSize.getSelectionModel().getSelectedItem());
