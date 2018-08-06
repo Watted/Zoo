@@ -52,6 +52,10 @@ public class Controller {
     @FXML
     private Label animalTypeL;
     @FXML
+    private Label mins;
+    @FXML
+    private Label secs;
+    @FXML
     private void initialize() {
         HashMap<String,String> images = new HashMap<>();
         images.put("Lion","UX\\imgs\\lion.jpg");
@@ -83,8 +87,31 @@ public class Controller {
                 }
             });
         });
+        Timer time1 = new Timer(1000,act->{
+            Platform.runLater(()-> {
+                int minute = Integer.parseInt(mins.getText());
+                int seconds = Integer.parseInt(secs.getText());
+                if(seconds == 59){
+                    minute++;
+                    mins.setText("0"+minute);
+                    secs.setText("00");
+                }else {
+                    seconds++;
+                    secs.setText(seconds+"");
+                }
+                if(minute == 10) {
+                    mins.setText("00");
+                    secs.setText("00");
+                }
+
+
+            });
+        });
+
         time.start();
+        time1.start();
         cageSelector.setOnAction(selected->{
+            Platform.runLater(()->{
             if(Main.zoo.getCagesMap().containsKey(cageSelector.getSelectionModel().getSelectedItem().toString())) {
                 Cage c = Main.zoo.getCagesMap().get(cageSelector.getSelectionModel().getSelectedItem().toString());
                 if (c.getContentAnimal().size() == 0) {
@@ -103,6 +130,7 @@ public class Controller {
                     });
                 }
             }
+            });
         });
         //Buttons Events
         //close
