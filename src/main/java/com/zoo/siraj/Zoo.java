@@ -130,9 +130,9 @@ public class Zoo implements Serializable {
         return false;
     }
 
-    /*public boolean buyFood(Food food, int amountToBuy) {
+    public boolean buyFood(Food food, int amountToBuy,String time) {
         int sumOfAllMissingAmount = 0;
-        for (Cage cage : cages) {
+        for (Cage cage : cages.values()) {
             for (Animal animal : cage.getContentAnimal()) {
                 if (animal.getMaxFood().containsKey(food)
                         && animal.getExistingFood().containsKey(food)
@@ -146,14 +146,24 @@ public class Zoo implements Serializable {
                 }
             }
         }
+        if(this.foods.containsKey(food)) {
+            int existingAmount = this.foods.get(food);
+            if (amountToBuy <= sumOfAllMissingAmount - existingAmount) {
+                this.foods.put(food, amountToBuy + existingAmount);
+                dealsPerDate.put(time, new FoodDeal(food, amountToBuy));
+                return true;
 
-        int existingAmount = this.foods.get(food);
-        if (amountToBuy <= sumOfAllMissingAmount - existingAmount) {
-            this.foods.put(food, amountToBuy + existingAmount);
-            return true;
+            }
         }
+            else {
+                this.foods.put(food, amountToBuy);
+                dealsPerDate.put(time, new FoodDeal(food, amountToBuy));
+            return true;
+
+        }
+
         return false;
-    }*/
+    }
 
     public void addToTreatmentEmployee(Employee employee, Animal animal) {
         employee.addAnimal(animal);

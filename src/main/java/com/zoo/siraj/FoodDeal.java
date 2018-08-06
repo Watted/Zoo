@@ -1,6 +1,8 @@
 package main.java.com.zoo.siraj;
 
-public class FoodDeal {
+import java.io.Serializable;
+
+public class FoodDeal implements Serializable {
     private Food current;
     private Integer amount;
 

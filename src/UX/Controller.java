@@ -56,6 +56,8 @@ public class Controller {
     @FXML
     private Label secs;
     @FXML
+    private Button buyFood;
+    @FXML
     private void initialize() {
         HashMap<String,String> images = new HashMap<>();
         images.put("Lion","UX\\imgs\\lion.jpg");
@@ -143,7 +145,23 @@ public class Controller {
             System.exit(0);
 
         });
-
+        buyFood.setOnAction(clicked->{
+            Application app = new Application() {
+                @Override
+                public void start(Stage primaryStage) throws Exception {
+                    Parent root = FXMLLoader.load(getClass().getResource("BuyFood.fxml"));
+                    primaryStage.setTitle("Buy Food");
+                    Scene primScene = new Scene(root, 700,400);
+                    primaryStage.setScene(primScene);
+                    primaryStage.show();
+                }
+            };
+            try {
+                app.start(new Stage());
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        });
         //Animals
         animals.setOnAction(action->{
             Application app = new Application() {
