@@ -24,6 +24,10 @@ public class Zoo implements Serializable {
         }
     }
 
+    public Map<Food, Integer> getFoods() {
+        return foods;
+    }
+
     public void addCage(Cage cage) {
         cages.put(cage.getId(),cage);
     }
@@ -131,37 +135,9 @@ public class Zoo implements Serializable {
     }
 
     public boolean buyFood(Food food, int amountToBuy,String time) {
-        int sumOfAllMissingAmount = 0;
-        for (Cage cage : cages.values()) {
-            for (Animal animal : cage.getContentAnimal()) {
-                if (animal.getMaxFood().containsKey(food)
-                        && animal.getExistingFood().containsKey(food)
-                        && animal.getEatenFood().containsKey(food)) {
-
-                    int allowedFoodAmountToEatForAnimalPerDay = animal.getMaxFoodPerKind(food)
-                            - animal.getExistingFoodPerKind(food)
-                            - animal.getEatenFoodPerKind(food);
-
-                    sumOfAllMissingAmount += allowedFoodAmountToEatForAnimalPerDay;
-                }
-            }
+        boolean toEat = false;
+        for (Animal animal : animals.values()) {
         }
-        if(this.foods.containsKey(food)) {
-            int existingAmount = this.foods.get(food);
-            if (amountToBuy <= sumOfAllMissingAmount - existingAmount) {
-                this.foods.put(food, amountToBuy + existingAmount);
-                dealsPerDate.put(time, new FoodDeal(food, amountToBuy));
-                return true;
-
-            }
-        }
-            else {
-                this.foods.put(food, amountToBuy);
-                dealsPerDate.put(time, new FoodDeal(food, amountToBuy));
-            return true;
-
-        }
-
         return false;
     }
 
