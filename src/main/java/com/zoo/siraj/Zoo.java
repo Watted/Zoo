@@ -12,12 +12,16 @@ public class Zoo implements Serializable {
     private Map<String,Employee> employees;
     private Map<Food, Integer> foods;
     private Map<String,Animal> animals;
-
+    private Map<String,FoodDeal> dealsPerDate;
     public Zoo() {
         cages = new HashMap<>();
         employees = new HashMap<>();
         foods = new HashMap<>();
         animals = new HashMap<>();
+        dealsPerDate = new HashMap<>();
+        for (Food food : Food.values()) {
+            foods.put(food,0);
+        }
     }
 
     public void addCage(Cage cage) {
@@ -114,9 +118,9 @@ public class Zoo implements Serializable {
         return employees.remove(employee.getId());
     }
 
-    public void addFood(Food food) {
-        this.foods.put(food, 0);
-    }
+//    public void addFood(Food food) {
+//        this.foods.put(food, 0);
+//    }
 
     public boolean removeFood(Food food) {
         if (this.foods.containsKey(food)) {
