@@ -231,20 +231,41 @@ public class AnimalsController {
         Cage cageWithThisSize = Main.zoo.getCageForThisId(substring);
         Employee employeeWithThisId = Main.zoo.getEmployeeWithThisId(substring1);
         if (animalType.getSelectionModel().getSelectedItem().equals("Snake")){
-            Animal snake = new Snake((Integer) addAnimalSize.getSelectionModel().getSelectedItem());
-            snake.addFood((Food) foodType.getSelectionModel().getSelectedItem(),(Integer)maxFoodAmount.getSelectionModel().getSelectedItem());
-            Main.zoo.addAnimalToCage(snake,cageWithThisSize);
-            Main.zoo.addToTreatmentEmployee(employeeWithThisId,snake);
+            if ((Integer)addAnimalSize.getSelectionModel().getSelectedItem()<=cageWithThisSize.getSize()) {
+                Animal snake = new Snake((Integer) addAnimalSize.getSelectionModel().getSelectedItem());
+                snake.addFood((Food) foodType.getSelectionModel().getSelectedItem(), (Integer) maxFoodAmount.getSelectionModel().getSelectedItem());
+                Main.zoo.addAnimalToCage(snake, cageWithThisSize);
+                Main.zoo.addToTreatmentEmployee(employeeWithThisId, snake);
+            }else {
+                Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+                alert.setHeaderText("the size of the animal is smaller than the cage");
+                alert.showAndWait();
+                return;
+            }
         }else if (animalType.getSelectionModel().getSelectedItem().equals("Lion")){
-            Animal lion = new Lion((Integer) addAnimalSize.getSelectionModel().getSelectedItem());
-            lion.addFood((Food) foodType.getSelectionModel().getSelectedItem(),(Integer)maxFoodAmount.getSelectionModel().getSelectedItem());
-            Main.zoo.addAnimalToCage(lion,cageWithThisSize);
-            Main.zoo.addToTreatmentEmployee(employeeWithThisId,lion);
+            if ((Integer)addAnimalSize.getSelectionModel().getSelectedItem()<=cageWithThisSize.getSize()) {
+                Animal lion = new Lion((Integer) addAnimalSize.getSelectionModel().getSelectedItem());
+                lion.addFood((Food) foodType.getSelectionModel().getSelectedItem(), (Integer) maxFoodAmount.getSelectionModel().getSelectedItem());
+                Main.zoo.addAnimalToCage(lion, cageWithThisSize);
+                Main.zoo.addToTreatmentEmployee(employeeWithThisId, lion);
+            }else {
+                Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+                alert.setHeaderText("the size of the animal is smaller than the cage");
+                alert.showAndWait();
+                return;
+            }
         }else{
-            Animal monkey = new Monkey((Integer) addAnimalSize.getSelectionModel().getSelectedItem());
-            monkey.addFood((Food) foodType.getSelectionModel().getSelectedItem(),(Integer)maxFoodAmount.getSelectionModel().getSelectedItem());
-            Main.zoo.addAnimalToCage(monkey,cageWithThisSize);
-            Main.zoo.addToTreatmentEmployee(employeeWithThisId,monkey);
+                if ((Integer)addAnimalSize.getSelectionModel().getSelectedItem()<=cageWithThisSize.getSize()) {
+                    Animal monkey = new Monkey((Integer) addAnimalSize.getSelectionModel().getSelectedItem());
+                    monkey.addFood((Food) foodType.getSelectionModel().getSelectedItem(), (Integer) maxFoodAmount.getSelectionModel().getSelectedItem());
+                    Main.zoo.addAnimalToCage(monkey, cageWithThisSize);
+                    Main.zoo.addToTreatmentEmployee(employeeWithThisId, monkey);
+                }else {
+                    Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+                    alert.setHeaderText("the size of the animal is smaller than the cage");
+                    alert.showAndWait();
+                    return;
+                }
         }
         setToTreeView();
 
