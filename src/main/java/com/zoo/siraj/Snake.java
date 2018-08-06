@@ -30,9 +30,8 @@ public class Snake extends Animal {
                     next.setValue(value);
                     flag = true;
                 }
-                System.out.println(Thread.currentThread().getId());
-                if (flag==false){
-                    stop();
+                if (!flag){
+                    ((Timer)action.getSource()).stop();
                 }
             }
 
@@ -41,9 +40,6 @@ public class Snake extends Animal {
         timer.start();
     }
 
-    private void stop() {
-        this.timer.stop();
-    }
 
     @Override
     public String getName() {
