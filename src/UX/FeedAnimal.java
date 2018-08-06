@@ -4,6 +4,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.stage.Stage;
@@ -34,9 +35,24 @@ public class FeedAnimal {
         });
 
         feed.setOnAction(feed->{
-            Main.zoo.feedAnimal(employee,animal,(Food) type.getSelectionModel().getSelectedItem(),(Integer) amount.getSelectionModel().getSelectedItem());
-            Stage thisStage = (Stage) ((Button) feed.getSource()).getScene().getWindow();
-            thisStage.close();
+            Map<Food, Integer> food = Main.zoo.getFood();
+            //Integer amountOfFood = food.get(type.getSelectionModel().getSelectedItem());
+            Food food1 = (Food) type.getSelectionModel().getSelectedItem();
+            int allowAmount = animal.getMaxFoodPerKind(food1) - animal.getExistingFoodPerKind(food1) - animal.getEatenFoodPerKind(food1);
+            if ((Integer)amount.getSelectionModel().getSelectedItem()<= allowAmount) {
+                if (Main.zoo.feedAnimal(employee, animal, (Food) type.getSelectionModel().getSelectedItem(), (Integer) amount.getSelectionModel().getSelectedItem())) {
+                    Stage thisStage = (Stage) ((Button) feed.getSource()).getScene().getWindow();
+                    thisStage.close();
+                }else {
+                    Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+                    alert.setHeaderText("He got what he deserved!");
+                    alert.showAndWait();
+                }
+            }else {
+                Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+                alert.setHeaderText("he can't eat over his max amount!\n"+"he still can eat another "+ allowAmount);
+                alert.showAndWait();
+            }
         });
 
         cancel.setOnAction(cancelAction->{

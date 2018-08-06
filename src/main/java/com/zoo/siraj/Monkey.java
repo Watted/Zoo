@@ -27,6 +27,8 @@ public class Monkey extends Animal {
                 if (value!=0){
                     System.out.println(value);
                     value -= 1;
+                    Integer integer = this.eatenFood.get(next.getKey());
+                    this.eatenFood.put(next.getKey(),integer+1);
                     next.setValue(value);
                     flag = true;
                 }

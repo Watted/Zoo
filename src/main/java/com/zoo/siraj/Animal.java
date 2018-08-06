@@ -12,13 +12,13 @@ public abstract class Animal implements Serializable {
      private int cageSize;
 
      // remember this values are constants
-     private Map<Food,Integer> maxFood = new HashMap<>();
+     protected Map<Food,Integer> maxFood = new HashMap<>();
 
      // remember this field updated peer every time the animal eat or max per 2 days
-     private Map<Food,Integer> existingFood = new HashMap<>();
+     protected Map<Food,Integer> existingFood = new HashMap<>();
 
      // remember this values are reset every dat, so this is the food that eat beer day
-     private Map<Food,Integer> eatenFood = new HashMap<>();
+     protected Map<Food,Integer> eatenFood = new HashMap<>();
 
      public Animal(int cageSize) {
           this.cageSize = cageSize;

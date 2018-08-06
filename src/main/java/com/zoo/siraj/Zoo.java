@@ -255,4 +255,8 @@ public class Zoo implements Serializable {
     public Cage getCageForThisId(String parseInt) {
         return this.cages.get(parseInt);
     }
+
+    public Map<Food, Integer> getFood() {
+        return this.foods;
+    }
 }
