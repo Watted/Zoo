@@ -15,9 +15,12 @@ import javafx.scene.control.SplitPane;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
+import javafx.scene.paint.Color;
+import javafx.scene.shape.Circle;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 import main.java.com.zoo.siraj.Cage;
+import main.java.com.zoo.siraj.Food;
 import main.java.com.zoo.siraj.Zoo;
 
 import javax.swing.*;
@@ -58,6 +61,34 @@ public class Controller {
     @FXML
     private Button buyFood;
     @FXML
+    private Circle plantsAlarm;
+    @FXML
+    private Label plantsAlarmNum;
+    @FXML
+    private Circle grainsAlarm;
+    @FXML
+    private Label grainsAlarmNUM;
+    @FXML
+    private Circle seedsAlarm;
+    @FXML
+    private Label seedsAlarmNum;
+    @FXML
+    private Circle meatAlarm;
+    @FXML
+    private Label meatAlarmNum;
+    @FXML
+    private Circle fruitAlarm;
+    @FXML
+    private Label fruitAlarmNum;
+    @FXML
+    private Circle wormsAlarm;
+    @FXML
+    private Label wormsAlarmNum;
+    @FXML
+    private Circle insectsAlarm;
+    @FXML
+    private Label insectsAlarmNum;
+    @FXML
     private void initialize() {
         HashMap<String,String> images = new HashMap<>();
         images.put("Lion","UX\\imgs\\lion.jpg");
@@ -87,6 +118,30 @@ public class Controller {
                     cageSelector.getItems().clear();
                     cageSelector.getItems().addAll(Main.zoo.getCagesMap().keySet().toArray());
                 }
+            });
+            ////////////////////////Update Alarms////////////////////////
+            Platform.runLater(()-> {
+                if (Main.zoo.getFoods().get(Food.plants) == 0) plantsAlarm.setFill(Color.RED);
+                else plantsAlarm.setFill(Color.GREEN);
+                if (Main.zoo.getFoods().get(Food.grains) == 0) grainsAlarm.setFill(Color.RED);
+                else plantsAlarm.setFill(Color.GREEN);
+                if (Main.zoo.getFoods().get(Food.meats) == 0) meatAlarm.setFill(Color.RED);
+                else plantsAlarm.setFill(Color.GREEN);
+                if (Main.zoo.getFoods().get(Food.seeds) == 0) seedsAlarm.setFill(Color.RED);
+                else plantsAlarm.setFill(Color.GREEN);
+                if (Main.zoo.getFoods().get(Food.worms) == 0) wormsAlarm.setFill(Color.RED);
+                else plantsAlarm.setFill(Color.GREEN);
+                if (Main.zoo.getFoods().get(Food.insects) == 0) insectsAlarm.setFill(Color.RED);
+                else plantsAlarm.setFill(Color.GREEN);
+                if (Main.zoo.getFoods().get(Food.fruits) == 0) fruitAlarm.setFill(Color.RED);
+                else plantsAlarm.setFill(Color.GREEN);
+                plantsAlarmNum.setText(Main.zoo.getFoods().get(Food.plants).toString());
+                grainsAlarmNUM.setText(Main.zoo.getFoods().get(Food.grains).toString());
+                seedsAlarmNum.setText(Main.zoo.getFoods().get(Food.seeds).toString());
+                meatAlarmNum.setText(Main.zoo.getFoods().get(Food.meats).toString());
+                fruitAlarmNum.setText(Main.zoo.getFoods().get(Food.fruits).toString());
+                wormsAlarmNum.setText(Main.zoo.getFoods().get(Food.worms).toString());
+                insectsAlarmNum.setText(Main.zoo.getFoods().get(Food.insects).toString());
             });
         });
         Timer time1 = new Timer(1000,act->{
