@@ -2,18 +2,16 @@ package main.java.com.zoo.siraj;
 
 import javax.swing.*;
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 public class Employee implements Serializable {
-    private static int idOfEmployee = 0;
+    //private static int idOfEmployee = 0;
     private String id;
     private String name;
     private List<Animal> treatmentAnimals;
     public Employee(String name) {
-        this.id = String.valueOf(++idOfEmployee);
+        this.id = UUID.randomUUID().toString();
+        //this.id = String.valueOf(++idOfEmployee);
         this.name = name;
         this.treatmentAnimals = new ArrayList<>();
     }

@@ -3,10 +3,11 @@ package main.java.com.zoo.siraj;
 import java.io.Serializable;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.UUID;
 
 public abstract class Animal implements Serializable {
 
-     private static int counter=1;
+     //private static int counter=1;
      private String id;
      private int cageSize;
 
@@ -21,7 +22,8 @@ public abstract class Animal implements Serializable {
 
      public Animal(int cageSize) {
           this.cageSize = cageSize;
-          this.id = String.valueOf(counter++);
+          this.id = UUID.randomUUID().toString();
+          //this.id = String.valueOf(counter++);
      }
 
      abstract public void eat();

@@ -3,15 +3,18 @@ package main.java.com.zoo.siraj;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 public class Cage implements Serializable {
-    private static int idOfCage = 0;
+   // private static int idOfCage = 0;
+
     private String id;
     private int size;
     private List<Animal> contentAnimal;
 
     public Cage(int size) {
-        this.id = String.valueOf(++idOfCage);
+        this.id = UUID.randomUUID().toString();
+        //this.id = String.valueOf(++idOfCage);
         this.size = size;
         this.contentAnimal = new ArrayList<>();
     }
