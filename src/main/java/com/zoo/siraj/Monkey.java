@@ -31,17 +31,15 @@ public class Monkey extends Animal {
                     flag = true;
                 }
             }
+
             if (!flag){
-                stop();
+                ((Timer)action.getSource()).stop();
             }
             System.out.println("eaten " + flag);
         });
         timer.start();
     }
 
-    private void stop() {
-        this.timer.stop();
-    }
 
     @Override
     public String getName() {
