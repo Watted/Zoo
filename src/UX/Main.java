@@ -12,6 +12,7 @@ import java.awt.*;
 public class Main extends Application {
 
     final protected static Zoo zoo = Zoo.loadZoo();
+    public static int dealNumber;
     protected static int day;
     @Override
     public void start(Stage primaryStage) throws Exception{
@@ -21,6 +22,7 @@ public class Main extends Application {
         Scene primScene = new Scene(root, screenSize.getWidth()*0.75, screenSize.getHeight());
         primaryStage.setScene(primScene);
         day = 0;
+        dealNumber = 0;
         primaryStage.show();
     }
 

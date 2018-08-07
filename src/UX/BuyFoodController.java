@@ -38,7 +38,7 @@ public class BuyFoodController {
         buy.setOnAction(buy->{
 
             if(Main.zoo.buyFood(f.get(type.getSelectionModel().getSelectedItem().toString()),
-                    Integer.parseInt(amount.getSelectionModel().getSelectedItem().toString()),Main.day+"")){
+                    Integer.parseInt(amount.getSelectionModel().getSelectedItem().toString()),Main.day+"$" + Main.dealNumber)){
                 Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
                 alert.setHeaderText("Food Brought Successfuly !");
                 alert.showAndWait();

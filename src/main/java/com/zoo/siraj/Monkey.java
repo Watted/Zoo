@@ -31,10 +31,12 @@ public class Monkey extends Animal {
                     this.eatenFood.put(next.getKey(),integer+1);
                     next.setValue(value);
                     flag = true;
+                    eating = true;
                 }
             }
 
             if (!flag){
+                eating = false;
                 ((Timer)action.getSource()).stop();
             }
             System.out.println("eaten " + flag);
