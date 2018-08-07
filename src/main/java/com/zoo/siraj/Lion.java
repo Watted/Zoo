@@ -30,10 +30,12 @@ public class Lion extends Animal {
                     this.eatenFood.put(next.getKey(),integer+1);
                     next.setValue(value);
                     flag = true;
+                    eating = true;
                 }
             }
             if (!flag){
                 ((Timer)action.getSource()).stop();
+                eating = false;
             }
             System.out.println("eaten " + flag);
         });

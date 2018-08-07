@@ -10,7 +10,7 @@ public abstract class Animal implements Serializable {
      //private static int counter=1;
      private String id;
      private int cageSize;
-
+     public boolean eating;
      // remember this values are constants
      protected Map<Food,Integer> maxFood = new HashMap<>();
 
@@ -23,6 +23,7 @@ public abstract class Animal implements Serializable {
      public Animal(int cageSize) {
           this.cageSize = cageSize;
           this.id = UUID.randomUUID().toString();
+          this.eating = false;
           //this.id = String.valueOf(counter++);
      }
 

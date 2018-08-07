@@ -1,6 +1,7 @@
 package main.java.com.zoo.siraj;
 
 
+import UX.Main;
 import javafx.application.Platform;
 import javafx.scene.control.Alert;
 
@@ -151,6 +152,7 @@ public class Zoo implements Serializable {
         if(toEat){
             this.foods.put(food,this.foods.get(food)+amountToBuy);
             this.dealsPerDate.put(time,new FoodDeal(food,amountToBuy));
+            Main.dealNumber++;
             return true;
         }
         return false;
@@ -262,5 +264,9 @@ public class Zoo implements Serializable {
         int am = foodDeal.getAmount();
         int current = this.foods.get(f);
         this.foods.put(f,Math.max(0,current-am));
+    }
+
+    public Collection<Animal> getAnimalsHash() {
+        return animals.values();
     }
 }

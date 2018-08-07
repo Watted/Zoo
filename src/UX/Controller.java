@@ -16,6 +16,7 @@ import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 import javafx.stage.Stage;
 import javafx.util.Duration;
+import main.java.com.zoo.siraj.Animal;
 import main.java.com.zoo.siraj.Cage;
 import main.java.com.zoo.siraj.Food;
 import main.java.com.zoo.siraj.Zoo;
@@ -24,9 +25,11 @@ import javax.swing.*;
 import java.io.IOException;
 import java.sql.Time;
 import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Set;
 
 
-public class Controller {
+public class Controller{
     @FXML
     private Pane controlPannel;
     @FXML
@@ -90,6 +93,7 @@ public class Controller {
     @FXML
     private void initialize() {
         HashMap<String,String> images = new HashMap<>();
+        Set<Animal> eatingAnimals = new HashSet<>();
         images.put("Lion","UX\\imgs\\lion.jpg");
         images.put("Snake", "UX\\imgs\\snake.jpg");
         images.put("Monkey","UX\\imgs\\monkey.jpg");
@@ -147,6 +151,22 @@ public class Controller {
             Platform.runLater(()-> {
                 int minute = Integer.parseInt(mins.getText());
                 int seconds = Integer.parseInt(secs.getText());
+                for(Animal animal : Main.zoo.getAnimalsHash()){
+                    if(!animal.eating && eatingAnimals.contains(animal)){
+                        Platform.runLater(()->{
+                            notifications.getItems().add(animal.getName() + " Finished Eating");
+                            eatingAnimals.remove(animal);
+                        });
+                    }
+                    if(animal.eating && !eatingAnimals.contains(animal)){
+                        Platform.runLater(()->{
+                            notifications.getItems().add(animal.getName() + " Started Eating");
+                            eatingAnimals.add(animal);
+                        });
+
+
+                    }
+                }
                 if(seconds == 59){
                     minute++;
                     mins.setText("0"+minute);
@@ -161,13 +181,15 @@ public class Controller {
                     mins.setText("00");
                     secs.setText("00");
                     for (String timeF : Main.zoo.getDealsPerDate().keySet()) {
-                        int perFood = Integer.parseInt(timeF);
+                        int perFood = Integer.parseInt(timeF.substring(0,timeF.indexOf("$")));
                         if(Main.day - perFood >= 2){
-                            notifications.getItems().add(new String(
-                                    Main.zoo.getDealsPerDate().get(perFood+"").getCurrent().toString()
-                                            + " Is Wasted !"));
-                            Main.zoo.removeFoodAmount(Main.zoo.getDealsPerDate().get(perFood+""));
-                            Main.zoo.getDealsPerDate().remove(timeF);
+                            Platform.runLater(()-> {
+                                notifications.getItems().add(Main.zoo.getDealsPerDate().get(timeF).getAmount() + "KG "+ new String(
+                                        Main.zoo.getDealsPerDate().get(timeF).getCurrent().toString()
+                                                + " Got Wasted !"));
+                                Main.zoo.removeFoodAmount(Main.zoo.getDealsPerDate().get(timeF));
+                                Main.zoo.getDealsPerDate().remove(timeF);
+                            });
                         }
                     }
                 }
@@ -184,6 +206,7 @@ public class Controller {
                 Cage c = Main.zoo.getCagesMap().get(cageSelector.getSelectionModel().getSelectedItem().toString());
                 if (c.getContentAnimal().size() == 0) {
                     statusL.setText(statusL.getText().substring(0, 6) + " : EMPTY!");
+                    imgBox.setImage(new Image("UX\\imgs\\empy.jpg"));
                 } else if (c.getContentAnimal().size() == c.getSize()) {
                     statusL.setText(statusL.getText().substring(0, 6) + " : FULL!");
                 } else {
@@ -283,4 +306,5 @@ public class Controller {
             }
         });
     }
+
 }
