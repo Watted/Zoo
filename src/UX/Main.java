@@ -19,7 +19,7 @@ public class Main extends Application {
         Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
         Parent root = FXMLLoader.load(getClass().getResource("welcomeScreen.fxml"));
         primaryStage.setTitle("Hello World");
-        Scene primScene = new Scene(root, screenSize.getWidth()*0.75, screenSize.getHeight());
+        Scene primScene = new Scene(root, screenSize.getWidth()*0.85, screenSize.getHeight());
         primaryStage.setScene(primScene);
         day = 0;
         dealNumber = 0;

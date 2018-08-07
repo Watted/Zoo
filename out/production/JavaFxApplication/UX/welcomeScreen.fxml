@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.geometry.Insets?>
+<?import javafx.scene.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.*?>
@@ -23,6 +24,11 @@
             <Button fx:id="cages" layoutX="390.0" layoutY="18.0" mnemonicParsing="false" prefHeight="70.0" prefWidth="150.0" text="Cages" />
             <Button fx:id="close" layoutX="760.0" layoutY="18.0" mnemonicParsing="false" prefHeight="70.0" prefWidth="150.0" text="Close" />
             <Button fx:id="buyFood" layoutX="580.0" layoutY="18.0" mnemonicParsing="false" prefHeight="70.0" prefWidth="150.0" text="Buy Food" />
+            <PointLight color="CHARTREUSE" layoutX="62.0" layoutY="53.0" lightOn="true" />
+            <PointLight color="CHARTREUSE" layoutX="250.0" layoutY="62.0" lightOn="true" />
+            <PointLight color="CHARTREUSE" layoutX="460.0" layoutY="40.0" lightOn="true" />
+            <PointLight color="CHARTREUSE" layoutX="844.0" layoutY="62.0" lightOn="true" />
+            <PointLight color="CHARTREUSE" layoutX="655.0" layoutY="52.0" lightOn="true" />
          </children>
       </Pane>
       <SplitPane fx:id="mainSplitPane" dividerPositions="0.29797979797979796" layoutX="20.0" layoutY="20.0" prefHeight="620.0" prefWidth="1240.0">
@@ -62,19 +68,19 @@
                         <Label prefHeight="21.0" prefWidth="168.0" text="Worms" GridPane.rowIndex="5" />
                         <Label prefHeight="21.0" prefWidth="168.0" text="Insects" GridPane.rowIndex="6" />
                         <Circle fx:id="plantsAlarm" fill="#ff1f1f" radius="20.0" stroke="BLACK" strokeType="INSIDE" GridPane.columnIndex="2" />
-                        <Label  fx:id="plantsAlarmNum" alignment="CENTER" contentDisplay="CENTER" prefHeight="21.0" prefWidth="168.0" text="0" GridPane.columnIndex="1" />
+                        <Label fx:id="plantsAlarmNum" alignment="CENTER" contentDisplay="CENTER" prefHeight="21.0" prefWidth="168.0" text="0" GridPane.columnIndex="1" />
                         <Circle fx:id="grainsAlarm" fill="#ff1f1f" radius="20.0" stroke="BLACK" strokeType="INSIDE" GridPane.columnIndex="2" GridPane.rowIndex="1" />
-                        <Label  fx:id="grainsAlarmNUM" alignment="CENTER" prefHeight="21.0" prefWidth="168.0" text="0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                        <Label fx:id="grainsAlarmNUM" alignment="CENTER" prefHeight="21.0" prefWidth="168.0" text="0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                         <Circle fx:id="seedsAlarm" fill="#ff1f1f" radius="20.0" stroke="BLACK" strokeType="INSIDE" GridPane.columnIndex="2" GridPane.rowIndex="2" />
-                        <Label  fx:id="seedsAlarmNum" alignment="CENTER" prefHeight="21.0" prefWidth="168.0" text="0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                        <Label fx:id="seedsAlarmNum" alignment="CENTER" prefHeight="21.0" prefWidth="168.0" text="0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
                         <Circle fx:id="meatAlarm" fill="#ff1f1f" radius="20.0" stroke="BLACK" strokeType="INSIDE" GridPane.columnIndex="2" GridPane.rowIndex="3" />
-                        <Label  fx:id="meatAlarmNum" alignment="CENTER" prefHeight="21.0" prefWidth="168.0" text="0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                        <Label fx:id="meatAlarmNum" alignment="CENTER" prefHeight="21.0" prefWidth="168.0" text="0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
                         <Circle fx:id="fruitAlarm" fill="#ff1f1f" radius="20.0" stroke="BLACK" strokeType="INSIDE" GridPane.columnIndex="2" GridPane.rowIndex="4" />
-                        <Label  fx:id="fruitAlarmNum" alignment="CENTER" prefHeight="21.0" prefWidth="168.0" text="0" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                        <Label fx:id="fruitAlarmNum" alignment="CENTER" prefHeight="21.0" prefWidth="168.0" text="0" GridPane.columnIndex="1" GridPane.rowIndex="4" />
                         <Circle fx:id="wormsAlarm" fill="#ff1f1f" radius="20.0" stroke="BLACK" strokeType="INSIDE" GridPane.columnIndex="2" GridPane.rowIndex="5" />
-                        <Label  fx:id="wormsAlarmNum" alignment="CENTER" prefHeight="21.0" prefWidth="168.0" text="0" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+                        <Label fx:id="wormsAlarmNum" alignment="CENTER" prefHeight="21.0" prefWidth="168.0" text="0" GridPane.columnIndex="1" GridPane.rowIndex="5" />
                         <Circle fx:id="insectsAlarm" fill="#ff1f1f" radius="20.0" stroke="BLACK" strokeType="INSIDE" GridPane.columnIndex="2" GridPane.rowIndex="6" />
-                        <Label  fx:id="insectsAlarmNum" alignment="CENTER" prefHeight="21.0" prefWidth="168.0" text="0" GridPane.columnIndex="1" GridPane.rowIndex="6" />
+                        <Label fx:id="insectsAlarmNum" alignment="CENTER" prefHeight="21.0" prefWidth="168.0" text="0" GridPane.columnIndex="1" GridPane.rowIndex="6" />
                      </children>
                   </GridPane>
                </children></AnchorPane>
@@ -90,7 +96,23 @@
                   <Label fx:id="statusL" layoutX="14.0" layoutY="100.0" text="Status" />
                   <Label fx:id="animalsNumL" layoutX="14.0" layoutY="150.0" text="Number of Animals Inside:" />
                   <Label fx:id="animalTypeL" layoutX="14.0" layoutY="200.0" text="Type Of Animal" />
-                  <ImageView fx:id="imgBox" fitHeight="360.0" fitWidth="480.0" layoutX="371.0" layoutY="244.0" pickOnBounds="true" preserveRatio="true" />
+                  <AmbientLight color="CHARTREUSE" layoutX="815.0" layoutY="20.0" lightOn="true" />
+                  <ParallelCamera layoutX="212.0" layoutY="424.0" />
+                  <GridPane layoutX="2.0" layoutY="364.0" prefHeight="251.0" prefWidth="858.0">
+                    <columnConstraints>
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                    </columnConstraints>
+                    <rowConstraints>
+                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                    </rowConstraints>
+                     <children>
+                        <ImageView fx:id="imgBox" fitHeight="253.0" fitWidth="284.0" pickOnBounds="true" preserveRatio="true" />
+                        <ImageView fx:id="imgBox1" fitHeight="253.0" fitWidth="284.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="2" />
+                        <ImageView fx:id="imgBox2" fitHeight="253.0" fitWidth="284.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" />
+                     </children>
+                  </GridPane>
                </children></AnchorPane>
         </items>
       </SplitPane>
@@ -109,5 +131,11 @@
             <Font name="Candara" size="27.0" />
          </font>
       </Label>
+      <Label fx:id="days" layoutX="47.0" layoutY="728.0" text="Day" textFill="#650a0a">
+         <font>
+            <Font name="Candara" size="27.0" />
+         </font>
+      </Label>
+      <ParallelCamera layoutX="14.0" layoutY="237.0" />
    </children>
 </Pane>

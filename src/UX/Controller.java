@@ -51,6 +51,10 @@ public class Controller{
     @FXML
     private ImageView imgBox;
     @FXML
+    private ImageView imgBox1;
+    @FXML
+    private ImageView imgBox2;
+    @FXML
     private Label statusL;
     @FXML
     private Label animalsNumL;
@@ -212,16 +216,34 @@ public class Controller{
                 if (c.getContentAnimal().size() == 0) {
                     statusL.setText(statusL.getText().substring(0, 6) + " : EMPTY!");
                     imgBox.setImage(new Image("UX\\imgs\\empy.jpg"));
-                } else if (c.getContentAnimal().size() == c.getSize()) {
-                    statusL.setText(statusL.getText().substring(0, 6) + " : FULL!");
+                    imgBox1.setImage(new Image("UX\\imgs\\empy.jpg"));
+                    imgBox2.setImage(new Image("UX\\imgs\\empy.jpg"));
                 } else {
-                    statusL.setText(statusL.getText().substring(0, 6) + " : Not Full");
+                    statusL.setText(statusL.getText().substring(0, 6) + " : Contains Animals!");
                 }
-                animalsNumL.setText(animalsNumL.getText().substring(0, 25) + " " + c.getContentAnimal().size() + " / " + c.getSize());
+                animalsNumL.setText(animalsNumL.getText().substring(0, 25) + " " + c.getContentAnimal().size());
                 if (c.getContentAnimal().size() > 0) {
                     Platform.runLater(() -> {
                         animalTypeL.setText(animalTypeL.getText().substring(0, 14) + " : " + c.getContentAnimal().get(0).getName());
-                        imgBox.setImage(new Image(images.get(c.getContentAnimal().get(0).getName())));
+                        boolean[] flags = {false,false,false};
+                        for (int i = 0 ; i <c.getContentAnimal().size() ; i++){
+                            if(c.getContentAnimal().get(i).getName().equals("Lion")) flags[0]=true;
+                            if(c.getContentAnimal().get(i).getName().equals("Monkey")) flags[1]=true;
+                            if(c.getContentAnimal().get(i).getName().equals("Snake")) flags[2]=true;
+                        }
+                        if (flags[0])
+                            imgBox.setImage(new Image("UX\\imgs\\lion.jpg"));
+                        else
+                            imgBox.setImage(new Image("UX\\imgs\\white.jpg"));
+                        if (flags[1])
+                            imgBox1.setImage(new Image("UX\\imgs\\monkey.jpg"));
+                        else
+                            imgBox1.setImage(new Image("UX\\imgs\\white.jpg"));
+                        if (flags[2])
+                            imgBox2.setImage(new Image("UX\\imgs\\snake.jpg"));
+                        else
+                            imgBox2.setImage(new Image("UX\\imgs\\white.jpg"));
+
                     });
                 }
             }

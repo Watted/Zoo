@@ -1,11 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
 <?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
-
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
 <AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="UX.EmployeeController">
    <children>
       <Pane layoutX="179.0" prefHeight="400.0" prefWidth="500.0">
@@ -13,7 +10,6 @@
             <Label fx:id="empNameL" layoutX="14.0" layoutY="14.0" prefHeight="30.0" prefWidth="480.0" text="Employee Name :" />
             <Label fx:id="empIdL" layoutX="14.0" layoutY="45.0" prefHeight="30.0" prefWidth="480.0" text="ID :" />
             <Label fx:id="animalsL" layoutX="14.0" layoutY="76.0" prefHeight="30.0" prefWidth="480.0" text="Animals :" />
-            <Button fx:id="removeEmp" layoutX="14.0" layoutY="355.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="150.0" text="Remove Employee" />
             <TextField fx:id="addName" layoutX="206.0" layoutY="14.0" />
             <Button fx:id="cancel" layoutX="14.0" layoutY="355.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="150.0" text="Cancel Adding" />
             <Button fx:id="add" layoutX="336.0" layoutY="355.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="150.0" text="Add..." />
