@@ -45,7 +45,7 @@ public class FeedAnimal {
                     thisStage.close();
                 }else {
                     Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-                    alert.setHeaderText("He got what he deserved!");
+                    alert.setHeaderText("you have to buy food first!!");
                     alert.showAndWait();
                 }
             }else {

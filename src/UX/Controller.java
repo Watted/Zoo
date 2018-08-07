@@ -155,7 +155,7 @@ public class Controller {
                     seconds++;
                     secs.setText(seconds+"");
                 }
-                if(minute == 1) {
+                if(minute == 10) {
                     Main.day++;
                     Main.zoo.resetAnimalBellies();
                     mins.setText("00");

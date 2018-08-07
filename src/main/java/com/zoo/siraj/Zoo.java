@@ -166,13 +166,20 @@ public class Zoo implements Serializable {
 
     public boolean feedAnimal(Employee employee, Animal animal, Food food, int amount) {
         int allowedToEat = animal.getMaxFoodPerKind(food) - animal.getExistingFoodPerKind(food) - animal.getEatenFoodPerKind(food);
-        if (amount <= allowedToEat) {
-            animal.eat();
-            return employee.feedAnimals(animal, food, amount);
+        Integer gotAmount = this.foods.get(food);
+        if (amount<= gotAmount) {
+            if (amount <= allowedToEat) {
+                boolean bool = employee.feedAnimals(animal, food, amount);
+                if (bool) {
+                    animal.eat();
+                    this.foods.put(food,gotAmount-amount);
+                }
+                return bool;
+            } else {
+                return false;
+            }
         }
-        else {
-            return false;
-        }
+        return false;
     }
 
 
