@@ -1,11 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.image.*?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.shape.*?>
 <?import javafx.scene.text.*?>
+
 <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="778.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="UX.Controller">
    <children>
       <Label fx:id="welcomeLabel" contentDisplay="CENTER" layoutX="150" layoutY="263.0" style="-fx-background-color: #E0E0E0;" text="Welcome To The Zoo !" textAlignment="CENTER" textFill="#22d31c" wrapText="true">
@@ -62,19 +66,19 @@
                         <Label prefHeight="21.0" prefWidth="168.0" text="Worms" GridPane.rowIndex="5" />
                         <Label prefHeight="21.0" prefWidth="168.0" text="Insects" GridPane.rowIndex="6" />
                         <Circle fx:id="plantsAlarm" fill="#ff1f1f" radius="20.0" stroke="BLACK" strokeType="INSIDE" GridPane.columnIndex="2" />
-                        <Label  fx:id="plantsAlarmNum" alignment="CENTER" contentDisplay="CENTER" prefHeight="21.0" prefWidth="168.0" text="0" GridPane.columnIndex="1" />
+                        <Label fx:id="plantsAlarmNum" alignment="CENTER" contentDisplay="CENTER" prefHeight="21.0" prefWidth="168.0" text="0" GridPane.columnIndex="1" />
                         <Circle fx:id="grainsAlarm" fill="#ff1f1f" radius="20.0" stroke="BLACK" strokeType="INSIDE" GridPane.columnIndex="2" GridPane.rowIndex="1" />
-                        <Label  fx:id="grainsAlarmNUM" alignment="CENTER" prefHeight="21.0" prefWidth="168.0" text="0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                        <Label fx:id="grainsAlarmNUM" alignment="CENTER" prefHeight="21.0" prefWidth="168.0" text="0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                         <Circle fx:id="seedsAlarm" fill="#ff1f1f" radius="20.0" stroke="BLACK" strokeType="INSIDE" GridPane.columnIndex="2" GridPane.rowIndex="2" />
-                        <Label  fx:id="seedsAlarmNum" alignment="CENTER" prefHeight="21.0" prefWidth="168.0" text="0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                        <Label fx:id="seedsAlarmNum" alignment="CENTER" prefHeight="21.0" prefWidth="168.0" text="0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
                         <Circle fx:id="meatAlarm" fill="#ff1f1f" radius="20.0" stroke="BLACK" strokeType="INSIDE" GridPane.columnIndex="2" GridPane.rowIndex="3" />
-                        <Label  fx:id="meatAlarmNum" alignment="CENTER" prefHeight="21.0" prefWidth="168.0" text="0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                        <Label fx:id="meatAlarmNum" alignment="CENTER" prefHeight="21.0" prefWidth="168.0" text="0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
                         <Circle fx:id="fruitAlarm" fill="#ff1f1f" radius="20.0" stroke="BLACK" strokeType="INSIDE" GridPane.columnIndex="2" GridPane.rowIndex="4" />
-                        <Label  fx:id="fruitAlarmNum" alignment="CENTER" prefHeight="21.0" prefWidth="168.0" text="0" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                        <Label fx:id="fruitAlarmNum" alignment="CENTER" prefHeight="21.0" prefWidth="168.0" text="0" GridPane.columnIndex="1" GridPane.rowIndex="4" />
                         <Circle fx:id="wormsAlarm" fill="#ff1f1f" radius="20.0" stroke="BLACK" strokeType="INSIDE" GridPane.columnIndex="2" GridPane.rowIndex="5" />
-                        <Label  fx:id="wormsAlarmNum" alignment="CENTER" prefHeight="21.0" prefWidth="168.0" text="0" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+                        <Label fx:id="wormsAlarmNum" alignment="CENTER" prefHeight="21.0" prefWidth="168.0" text="0" GridPane.columnIndex="1" GridPane.rowIndex="5" />
                         <Circle fx:id="insectsAlarm" fill="#ff1f1f" radius="20.0" stroke="BLACK" strokeType="INSIDE" GridPane.columnIndex="2" GridPane.rowIndex="6" />
-                        <Label  fx:id="insectsAlarmNum" alignment="CENTER" prefHeight="21.0" prefWidth="168.0" text="0" GridPane.columnIndex="1" GridPane.rowIndex="6" />
+                        <Label fx:id="insectsAlarmNum" alignment="CENTER" prefHeight="21.0" prefWidth="168.0" text="0" GridPane.columnIndex="1" GridPane.rowIndex="6" />
                      </children>
                   </GridPane>
                </children></AnchorPane>
@@ -105,6 +109,11 @@
          </font>
       </Label>
       <Label fx:id="secs" layoutX="97.0" layoutY="695.0" text="00" textFill="#650a0a">
+         <font>
+            <Font name="Candara" size="27.0" />
+         </font>
+      </Label>
+      <Label fx:id="days" layoutX="47.0" layoutY="728.0" text="Day" textFill="#650a0a">
          <font>
             <Font name="Candara" size="27.0" />
          </font>

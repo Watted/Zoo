@@ -31,6 +31,8 @@ import java.util.Set;
 
 public class Controller{
     @FXML
+    private Label days;
+    @FXML
     private Pane controlPannel;
     @FXML
     private Label welcomeLabel;
@@ -148,6 +150,7 @@ public class Controller{
             });
         });
         Timer time1 = new Timer(1000,act->{
+            Platform.runLater(()->days.setText("Day "+Main.day));
             Platform.runLater(()-> {
                 int minute = Integer.parseInt(mins.getText());
                 int seconds = Integer.parseInt(secs.getText());
@@ -184,7 +187,9 @@ public class Controller{
                         int perFood = Integer.parseInt(timeF.substring(0,timeF.indexOf("$")));
                         if(Main.day - perFood >= 2){
                             Platform.runLater(()-> {
-                                notifications.getItems().add(Main.zoo.getDealsPerDate().get(timeF).getAmount() + "KG "+ new String(
+                                notifications.getItems().add(Math.min(Main.zoo.getDealsPerDate().get(timeF).getAmount(),
+                                        Main.zoo.getFoods().get(Main.zoo.getDealsPerDate().get(timeF).getCurrent()))
+                                        + "KG "+ new String(
                                         Main.zoo.getDealsPerDate().get(timeF).getCurrent().toString()
                                                 + " Got Wasted !"));
                                 Main.zoo.removeFoodAmount(Main.zoo.getDealsPerDate().get(timeF));
