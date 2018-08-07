@@ -123,11 +123,17 @@ public class Controller{
 
         Timer time = new Timer(500,act->{
             Platform.runLater(()-> {
-                if(!cageSelector.getItems().containsAll(Main.zoo.getCagesMap().keySet())) {
-                    cageSelector.getItems().clear();
-                    cageSelector.getItems().addAll(Main.zoo.getCagesMap().keySet().toArray());
-                }
-            });
+                        if (!cageSelector.getItems().containsAll(Main.zoo.getCagesMap().keySet()) || cageSelector.getItems().size() != Main.zoo.getCagesMap().keySet().size()) {
+                            cageSelector.getItems().clear();
+                            cageSelector.getItems().addAll(Main.zoo.getCagesMap().keySet().toArray());
+                            statusL.setText("Status:");
+                            animalsNumL.setText("Number of animals Inside:");
+                            animalTypeL.setText("Type Of Animal:");
+                            imgBox.setImage(null);
+                            imgBox1.setImage(null);
+                            imgBox2.setImage(null);
+                        }
+                    });
             ////////////////////////Update Alarms////////////////////////
             Platform.runLater(()-> {
                 if (Main.zoo.getFoods().get(Food.plants) == 0) plantsAlarm.setFill(Color.RED);
